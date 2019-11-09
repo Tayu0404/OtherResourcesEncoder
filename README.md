@@ -8,8 +8,8 @@ The software encodes on other computers using SSH. Do not use the resources of t
 Get a comfortable working environment.
 
 ## Requirement
-Client PC
+### Client PC
 * Microsoft Windwos 10
-Remote PC
+### Remote
 * OpenSSH
 * ffmpeg
