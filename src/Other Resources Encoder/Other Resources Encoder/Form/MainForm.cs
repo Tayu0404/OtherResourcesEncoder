@@ -7,7 +7,7 @@ partial class MainForm : Form{
 	private Label encodeLabel, outPutFileNameLabel, encoderLabel, outPutVideoLabel, outPutAudioLabel;
 	private TextBox outPutFileName;
 	private ComboBox resourceMachine, encodeProfile, encoder;
-	private Button resourceMachineSettingButton, encodeProfileSaveButton;
+	private Button resourceMachineSetting, encodeProfileSaveButton;
 	private CheckBox outPutVideoCheckBox, outPutAudioCheckBox;
 
 	//Video Preview

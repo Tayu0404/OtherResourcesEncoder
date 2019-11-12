@@ -10,22 +10,24 @@ partial	class MainForm : Form {
 
 
 		//Encode Setting
-		this.encodeLabel                  = new Label();
-		this.outPutFileNameLabel          = new Label();
-		this.outPutFileName               = new TextBox();
-		this.resourceMachine              = new ComboBox();
-		this.resourceMachineSettingButton = new Button();
-		this.encodeProfile                = new ComboBox();
-		this.encodeProfileSaveButton      = new Button();
-		this.encoderLabel                 = new Label();
-		this.encoder                      = new ComboBox();
-		this.outPutVideoCheckBox          = new CheckBox();
-		this.outPutVideoLabel             = new Label();
-		this.outPutAudioCheckBox          = new CheckBox();
-		this.outPutAudioLabel             = new Label();
+		this.encodeLabel             = new Label();
+		this.outPutFileNameLabel     = new Label();
+		this.outPutFileName          = new TextBox();
+		this.resourceMachine         = new ComboBox();
+		this.resourceMachineSetting  = new Button();
+		this.encodeProfile           = new ComboBox();
+		this.encodeProfileSaveButton = new Button();
+		this.encoderLabel            = new Label();
+		this.encoder                 = new ComboBox();
+		this.outPutVideoCheckBox     = new CheckBox();
+		this.outPutVideoLabel        = new Label();
+		this.outPutAudioCheckBox     = new CheckBox();
+		this.outPutAudioLabel        = new Label();
 
 		//Video Preview
 		this.videoPreview = new AxMSVidCtl();
+
+		this.ClientSize = new Size(1920, 1080);
 
 		curW = curH = margen;
 
@@ -34,18 +36,21 @@ partial	class MainForm : Form {
 		this.encodeLabel.Size = new Size(400, 25);
 		this.encodeLabel.Location = new Point(curW, curH);
 
-		this.videoPreview.Size = new Size(960, 540);
-		this.videoPreview.Location = new Point(curW + this.encodeLabel.Size.Width + margen, curH);
-
+		this.videoPreview.Size = new Size(1440, 810);
+		this.videoPreview.Location = new Point(
+			this.ClientSize.Width - this.videoPreview.Size.Width - margen,
+			curH
+		);
+		int encodeSettingArea = this.ClientSize.Width - this.videoPreview.Size.Width - margen * 3;
 		curH += this.encodeLabel.Size.Height + margen;
 
 		this.outPutFileNameLabel.Text = "OutPut File Name :";
 		this.outPutFileNameLabel.Font = new Font("arial", 14f);
 		this.outPutFileNameLabel.TextAlign = ContentAlignment.MiddleLeft;
-		this.outPutFileNameLabel.Size = new Size(140, 25);
+		this.outPutFileNameLabel.Size = new Size (170, 25);
 		this.outPutFileNameLabel.Location = new Point(curW, curH);
 
-		this.outPutFileName.Size = new Size(260, 25);
+		this.outPutFileName.Size = new Size(encodeSettingArea - this.outPutFileNameLabel.Width, 25);
 		this.outPutFileName.Font = new Font("arial", 14f);
 		this.outPutFileName.Location = new Point(curW + this.outPutFileNameLabel.Size.Width, curH);
 
@@ -57,15 +62,18 @@ partial	class MainForm : Form {
 		this.resourceMachine.SelectedIndex = 0;
 		this.resourceMachine.DropDownStyle = ComboBoxStyle.DropDownList;
 		this.resourceMachine.Font = new Font("arial", 14f);
-		this.resourceMachine.Size = new Size(300,0);
+		this.resourceMachine.Size = new Size(encodeSettingArea - 100, 0);
 		this.resourceMachine.Location = new Point(curW, curH);
 
-		this.resourceMachineSettingButton.Text = "Setting";
-		this.resourceMachineSettingButton.Font = new Font("arial", 14f);
-		this.resourceMachineSettingButton.Size = new Size(100, this.resourceMachine.Size.Height);
-		this.resourceMachineSettingButton.Location = new Point(curW + this.resourceMachine.Size.Width, curH);
+		this.resourceMachineSetting.Text = "Setting";
+		this.resourceMachineSetting.Font = new Font("arial", 14f);
+		this.resourceMachineSetting.Size = new Size(100, this.resourceMachine.Size.Height);
+		this.resourceMachineSetting.Location = new Point(
+			encodeSettingArea - this.resourceMachineSetting.Size.Width + margen,
+			curH
+		);
 
-		curH += this.resourceMachineSettingButton.Size.Height + margen;
+		curH += this.resourceMachineSetting.Size.Height + margen;
 
 		this.encodeProfile.Items.AddRange(new object[] {
 			"Profile"
@@ -73,16 +81,19 @@ partial	class MainForm : Form {
 		this.encodeProfile.SelectedIndex = 0;
 		this.encodeProfile.DropDownStyle = ComboBoxStyle.DropDownList;
 		this.encodeProfile.Font = new Font("arial", 14f);
-		this.encodeProfile.Size = new Size(300, 0);
+		this.encodeProfile.Size = new Size(encodeSettingArea - 100, 0);
 		this.encodeProfile.Location = new Point(curW, curH);
 
 		this.encodeProfileSaveButton.Text = "Save";
 		this.encodeProfileSaveButton.Font = new Font("arial", 14f);
 		this.encodeProfileSaveButton.Size = new Size(100, this.encodeProfile.Size.Height);
-		this.encodeProfileSaveButton.Location = new Point(curW + this.encodeProfile.Size.Width, curH);
+		this.encodeProfileSaveButton.Location = new Point(
+			encodeSettingArea - this.encodeProfileSaveButton.Size.Width + margen,
+			curH
+		);
 
 		curH += this.encodeProfileSaveButton.Size.Height + margen;
-
+		
 		this.encoderLabel.Text = "Encoder";
 		this.encoderLabel.Font = new Font("arial", 14f);
 		this.encoderLabel.Size = new Size(100, 30);
@@ -96,7 +107,7 @@ partial	class MainForm : Form {
 		this.encoder.SelectedIndex = 0;
 		this.encoder.DropDownStyle = ComboBoxStyle.DropDownList;
 		this.encoder.Font = new Font("arial", 14f);
-		this.encoder.Size = new Size(300, 0);
+		this.encoder.Size = new Size(encodeSettingArea - this.encoderLabel.Size.Width, 0);
 		this.encoder.Location = new Point(curW + this.encoderLabel.Size.Width, curH);
 
 		curH += this.encoder.Size.Height + margen;
@@ -128,7 +139,7 @@ partial	class MainForm : Form {
 		this.outPutAudioLabel.Location = new Point(outputSettingsWidth, curH);
 
 		this.Text = "Other Resource Encoder";
-		int mainFormW = (int)Math.Round(Screen.GetWorkingArea(this).Width  * 0.9);
+		int mainFormW = (int)Math.Round(Screen.GetWorkingArea(this).Width * 0.9);
 		int mainFormH = (int)Math.Round(Screen.GetWorkingArea(this).Height * 0.9);
 		this.ClientSize = new Size(mainFormW, mainFormH);
 
@@ -137,7 +148,7 @@ partial	class MainForm : Form {
 		this.Controls.Add(this.outPutFileNameLabel);
 		this.Controls.Add(this.outPutFileName);
 		this.Controls.Add(this.resourceMachine);
-		this.Controls.Add(this.resourceMachineSettingButton);
+		this.Controls.Add(this.resourceMachineSetting);
 		this.Controls.Add(this.encodeProfile);
 		this.Controls.Add(this.encodeProfileSaveButton);
 		this.Controls.Add(this.encoderLabel);
