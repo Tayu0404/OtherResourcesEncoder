@@ -36,6 +36,7 @@ partial	class MainForm : Form {
 		int mainFormH = (int)Math.Round(Screen.GetWorkingArea(this).Height * 0.9);
 		this.ClientSize = new Size(mainFormW, mainFormH);
 		this.MinimumSize = new Size(encodeSettingArea + margen * 3, 0);
+		this.WindowState = FormWindowState.Maximized;
 
 		this.encodeLabel.Text = "Encode";
 		this.encodeLabel.Font = new Font("arial", 17f);
