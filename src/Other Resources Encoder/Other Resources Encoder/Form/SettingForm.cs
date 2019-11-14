@@ -3,17 +3,17 @@ using System.Drawing;
 using System.Windows.Forms;
 
 partial class SettingForm : Form {
-	ListBox optionSettings;
+	private ListBox settingList;
 	//Remote Machine
-	Label remoteMachineLabel, profileLabel, hostLabel, portLabel, userLabel, passLabel;
-	ComboBox machineProfile;
-	TextBox profileName, host, port, user, password;
-	Button profileSave;
+	private Label remoteMachineLabel, profileLabel, hostLabel, portLabel, userLabel, passLabel;
+	private ComboBox machineProfile;
+	private TextBox profileName, host, port, user, password;
+	private Button profileSave, profileRemove;
 	//SSH Key
-	Label sshKeyLabel;
-	Button privateKeyCopy, privateKeyOpen, publicKeyCopy, publicKeyOpen, keygen;
+	private Label sshKeyLabel;
+	private Button privateKeyCopy, privateKeyOpen, publicKeyCopy, publicKeyOpen, keygen;
 	//Priority
-	Label usagePriority;
+	private Label usagePriorityLabel;
 	
 	public SettingForm() {
 		InitializeComponent();
