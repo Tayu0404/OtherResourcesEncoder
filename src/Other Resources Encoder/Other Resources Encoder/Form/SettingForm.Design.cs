@@ -40,12 +40,13 @@ partial class SettingForm : Form {
 		this.StartPosition = FormStartPosition.CenterParent;
 		this.MaximizeBox = false;
 		this.MinimizeBox = false;
+		this.ShowInTaskbar = false;
 
 		curW = curH = margen;
 
 		//Setting List 
 		this.settingList.Items.AddRange(new object[] {
-			"Remote Machines",
+			"Resource Machines",
 			"Usage Priority",
 			"SSH Key",
 		});

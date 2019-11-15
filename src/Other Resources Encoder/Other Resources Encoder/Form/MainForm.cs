@@ -19,6 +19,7 @@ partial class MainForm : Form{
 	
 	private void resourceMachineSettingClick(object sender, EventArgs e) {
 		SettingForm settingForm = new SettingForm();
+		settingForm.SelectSetting = "Resource Machines";
 		settingForm.ShowDialog();
 	}
 }

@@ -14,7 +14,11 @@ partial class SettingForm : Form {
 	private Button privateKeyCopy, privateKeyOpen, publicKeyCopy, publicKeyOpen, keygen;
 	//Priority
 	private Label usagePriorityLabel;
-	
+
+	public String SelectSetting {
+		set { settingList.SelectedItem = value; }
+	}
+
 	public SettingForm() {
 		InitializeComponent();
 	}
