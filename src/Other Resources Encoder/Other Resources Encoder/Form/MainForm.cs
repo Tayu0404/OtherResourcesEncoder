@@ -16,4 +16,9 @@ partial class MainForm : Form{
 	public MainForm() {
 		InitializeComponent();
 	}
+	
+	private void resourceMachineSettingClick(object sender, EventArgs e) {
+		SettingForm settingForm = new SettingForm();
+		settingForm.ShowDialog();
+	}
 }

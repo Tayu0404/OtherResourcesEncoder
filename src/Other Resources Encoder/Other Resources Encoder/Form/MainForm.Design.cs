@@ -87,6 +87,7 @@ partial	class MainForm : Form {
 			encodeSettingArea - this.resourceMachineSetting.Size.Width + margen,
 			curH
 		);
+		this.resourceMachineSetting.Click += new EventHandler(resourceMachineSettingClick);
 
 		curH += this.resourceMachineSetting.Size.Height + margen;
 

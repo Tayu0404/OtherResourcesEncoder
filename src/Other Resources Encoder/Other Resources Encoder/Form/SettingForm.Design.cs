@@ -5,11 +5,12 @@ using System.Windows.Forms;
 partial class SettingForm : Form {
 	private void InitializeComponent() {
 		const int margen = 15;
-		
+		int curW, curH;
+
 		//Setting List
 		this.settingList = new ListBox();
-		//Remote Machine
-		this.remoteMachineLabel = new Label();
+		//Remote Machines
+		this.resourceMachineLabel = new Label();
 		this.machineProfile = new ComboBox();
 		this.profileLabel = new Label();
 		this.profileName = new TextBox();
@@ -35,8 +36,12 @@ partial class SettingForm : Form {
 
 		//Client
 		this.Name = "Setting";
-		this.ClientSize = new Size();
+		this.ClientSize = new Size(845,500);
 		this.StartPosition = FormStartPosition.CenterParent;
+		this.MaximizeBox = false;
+		this.MinimizeBox = false;
+
+		curW = curH = margen;
 
 		//Setting List 
 		this.settingList.Items.AddRange(new object[] {
@@ -46,6 +51,156 @@ partial class SettingForm : Form {
 		});
 		this.settingList.Font = new Font("arial", 14f);
 		this.settingList.Size = new Size(300, this.ClientSize.Height - margen * 2);
-		this.settingList.Location = new Point(margen, margen);
+		this.settingList.Location = new Point(curW, curH);
+
+		curW = this.settingList.Size.Width + margen * 2;
+
+		//Remote Machines
+		this.resourceMachineLabel.Text = "Resource Machines";
+		this.resourceMachineLabel.Font = new Font("arial", 12f);
+		this.resourceMachineLabel.Size = new Size(300, 25);
+		this.resourceMachineLabel.Location = new Point(curW, curH);
+
+		curH += this.resourceMachineLabel.Size.Height + margen;
+
+		this.machineProfile.Items.AddRange(new object[] {
+			"New Profile"
+		});
+		this.machineProfile.SelectedIndex = 0;
+		this.machineProfile.DropDownStyle = ComboBoxStyle.DropDownList;
+		this.machineProfile.Font = new Font("arial", 12f);
+		this.machineProfile.Size = new Size(500, 25);
+		this.machineProfile.Location = new Point(curW, curH);
+
+		curH +=this.machineProfile.Size.Height + margen;
+
+		this.profileLabel.Text = "Profile Name";
+		this.profileLabel.TextAlign = ContentAlignment.MiddleLeft;
+		this.profileLabel.Font = new Font("arial", 12f);
+		this.profileLabel.Size = new Size(100, 30);
+		this.profileLabel.Location = new Point(curW, curH);
+		
+		this.profileName.Font = new Font("arial", 12f);
+		this.profileName.Size = new Size(400, 30);
+		this.profileName.Location = new Point(curW + this.profileLabel.Size.Width, curH);
+
+		curH += this.profileName.Size.Height + margen;
+
+		this.hostLabel.Text = "Host";
+		this.hostLabel.TextAlign = ContentAlignment.MiddleLeft;
+		this.hostLabel.Font = new Font("arial", 12f);
+		this.hostLabel.Size = new Size(100, 30);
+		this.hostLabel.Location = new Point(curW, curH);
+
+		this.host.Font = new Font("arial", 12f);
+		this.host.Size = new Size(400, 30);
+		this.host.Location = new Point(curW + hostLabel.Size.Width, curH);
+
+		curH += this.host.Size.Height + margen;
+
+		this.portLabel.Text = "Port";
+		this.portLabel.TextAlign = ContentAlignment.MiddleLeft;
+		this.portLabel.Font = new Font("arial", 12f);
+		this.portLabel.Size = new Size(100, 30);
+		this.portLabel.Location = new Point(curW, curH);
+
+		this.port.Font = new Font("arial", 12f);
+		this.port.Size = new Size(400, 30);
+		this.port.Location = new Point(curW + this.portLabel.Size.Width, curH);
+
+		curH += this.port.Size.Height + margen;
+
+		this.userLabel.Text = "User";
+		this.userLabel.TextAlign = ContentAlignment.MiddleLeft;
+		this.userLabel.Font = new Font("arial", 12f);
+		this.userLabel.Size = new Size(100, 30);
+		this.userLabel.Location = new Point(curW, curH);
+
+		this.user.Font = new Font("arial", 12f);
+		this.user.Size = new Size(400, 30);
+		this.user.Location = new Point(curW + this.userLabel.Size.Width, curH);
+
+		curH += this.user.Size.Height + margen;
+
+		this.passLabel.Text = "Password";
+		this.passLabel.TextAlign = ContentAlignment.MiddleLeft;
+		this.passLabel.Font = new Font("arial", 12f);
+		this.passLabel.Size = new Size(100, 30);
+		this.passLabel.Location = new Point(curW, curH);
+
+		this.password.Font = new Font("arial", 12f);
+		this.password.Size = new Size(400, 30);
+		this.password.Location = new Point(curW + this.passLabel.Size.Width, curH); ;
+
+		curH += this.password.Size.Height + margen;
+		
+		this.profileSave.Text = "Save";
+		this.profileSave.Font = new Font("arial", 12f);
+		this.profileSave.Size = new Size(100, 30);
+		this.profileSave.Location = new Point(
+			this.password.Location.X + this.password.Size.Width - this.profileSave.Size.Width,
+			curH
+		);
+
+		this.profileRemove.Text = "Remove";
+		this.profileRemove.Font = new Font("arial", 12f);
+		this.profileRemove.Size = new Size(100, 30);
+		this.profileRemove.Location = new Point(
+			this.profileSave.Location.X - this.profileRemove.Size.Width - margen,
+			curH
+		);
+
+		//SSH Key
+		this.sshKeyLabel.Text = "SSH Key";
+		this.sshKeyLabel.Size = new Size(100, 30);
+		this.sshKeyLabel.Location = new Point(curW, curH);
+
+		this.privateKeyCopy.Text = "Private key Copy";
+		this.privateKeyCopy.Size = new Size(300, 25);
+		this.privateKeyCopy.Location = new Point(curW, curH);
+
+		this.privateKeyOpen.Text = "Open";
+		this.privateKeyOpen.Size = new Size(300, 25);
+		this.privateKeyCopy.Location = new Point(curW, curH);
+
+		this.publicKeyCopy.Text = "Public Key Copy";
+		this.publicKeyCopy.Size = new Size(300, 25);
+		this.publicKeyCopy.Location = new Point(curW, curH);
+
+		this.publicKeyOpen.Text = "Open";
+		this.publicKeyCopy.Size = new Size(300, 25);
+		this.publicKeyCopy.Location = new Point(curW, curH);
+
+		this.keygen.Text = "Generate";
+		this.keygen.Size = new Size(300, 25);
+
+		//Setting List
+		this.Controls.Add(this.settingList);
+		//Remote Machines
+		this.Controls.Add(this.resourceMachineLabel);
+		this.Controls.Add(this.machineProfile);
+		this.Controls.Add(this.profileLabel);
+		this.Controls.Add(this.profileName);
+		this.Controls.Add(this.hostLabel);
+		this.Controls.Add(this.host);
+		this.Controls.Add(this.portLabel);
+		this.Controls.Add(this.port);
+		this.Controls.Add(this.userLabel);
+		this.Controls.Add(this.user);
+		this.Controls.Add(this.passLabel);
+		this.Controls.Add(this.password);
+		this.Controls.Add(this.profileSave);
+		this.Controls.Add(this.profileRemove);
+		/*
+		//SSH key
+		this.Controls.Add(this.sshKeyLabel);
+		this.Controls.Add(this.privateKeyCopy);
+		this.Controls.Add(this.privateKeyOpen);
+		this.Controls.Add(this.publicKeyCopy);
+		this.Controls.Add(this.publicKeyOpen);
+		this.Controls.Add(this.keygen);
+		//Priority
+		this.Controls.Add(this.usagePriorityLabel);
+		*/
 	}
 }
