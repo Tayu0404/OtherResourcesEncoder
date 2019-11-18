@@ -16,10 +16,10 @@ partial class AboutForm : Form {
 		this.ShowInTaskbar = false;
 		curW = curH = margen;
 
-		this.ore = new Label();
-		this.version = new Label();
+		this.ore       = new Label();
+		this.version   = new Label();
 		this.copyright = new Label();
-		this.license = new Label();
+		this.license   = new Label();
 
 		this.ore.Text = "Other Resources Encoder";
 		this.ore.Font = new Font("arial", 17f);
