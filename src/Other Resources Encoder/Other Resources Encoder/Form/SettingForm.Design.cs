@@ -59,7 +59,7 @@ partial class SettingForm : Form {
 		this.settingList.Location = new Point(curW, curH);
 		this.settingList.SelectedIndexChanged += new EventHandler(settingListChange);
 
-		this.okButton.Text = "OK";
+		this.okButton.Text = "Accept";
 		this.okButton.DialogResult = DialogResult.OK;
 		this.okButton.Font = new Font("arial", 12f);
 		this.okButton.Size = new Size(150, 30);
