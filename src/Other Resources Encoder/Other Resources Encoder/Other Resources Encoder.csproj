@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\AboutForm.Design.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\SettingForm.Design.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -66,11 +66,11 @@ partial	class MainForm : Form {
 		});
 
 		this.menuHelpAbout.Text = "About(A)";
-		
 		this.menuStrip.Items.AddRange(new ToolStripItem[]{
 			this.menuFile,
 			this.menuHelp,
 		});
+		this.menuHelpAbout.Click += new EventHandler(menuHelpAboutClick);
 
 		//Form
 		curH += MainMenuStrip.Size.Height;
