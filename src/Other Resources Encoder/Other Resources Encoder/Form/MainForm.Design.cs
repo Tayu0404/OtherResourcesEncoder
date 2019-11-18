@@ -38,6 +38,8 @@ partial	class MainForm : Form {
 		this.MinimumSize = new Size(encodeSettingArea + margen * 3, 0);
 		this.WindowState = FormWindowState.Maximized;
 
+		//Menu
+
 		this.encodeLabel.Text = "Encode";
 		this.encodeLabel.Font = new Font("arial", 17f);
 		this.encodeLabel.Size = new Size(300, 25);

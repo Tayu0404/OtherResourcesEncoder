@@ -36,11 +36,12 @@ partial class SettingForm : Form {
 
 		//Client
 		this.Name = "Setting";
-		this.ClientSize = new Size(845,500);
+		this.ClientSize = new Size(750 + margen *3,500);
 		this.StartPosition = FormStartPosition.CenterParent;
 		this.MaximizeBox = false;
 		this.MinimizeBox = false;
 		this.ShowInTaskbar = false;
+		this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
 		curW = curH = margen;
 
@@ -51,15 +52,16 @@ partial class SettingForm : Form {
 			"SSH Key",
 		});
 		this.settingList.Font = new Font("arial", 14f);
-		this.settingList.Size = new Size(300, this.ClientSize.Height - margen * 2);
+		this.settingList.Size = new Size(250, this.ClientSize.Height - margen * 2);
 		this.settingList.Location = new Point(curW, curH);
+		this.settingList.SelectedIndexChanged += new EventHandler(settingListChange);
 
 		curW = this.settingList.Size.Width + margen * 2;
 
 		//Remote Machines
 		this.resourceMachineLabel.Text = "Resource Machines";
-		this.resourceMachineLabel.Font = new Font("arial", 12f);
-		this.resourceMachineLabel.Size = new Size(300, 25);
+		this.resourceMachineLabel.Font = new Font("arial", 15f);
+		this.resourceMachineLabel.Size = new Size(250, 30);
 		this.resourceMachineLabel.Location = new Point(curW, curH);
 
 		curH += this.resourceMachineLabel.Size.Height + margen;
@@ -70,7 +72,7 @@ partial class SettingForm : Form {
 		this.machineProfile.SelectedIndex = 0;
 		this.machineProfile.DropDownStyle = ComboBoxStyle.DropDownList;
 		this.machineProfile.Font = new Font("arial", 12f);
-		this.machineProfile.Size = new Size(500, 25);
+		this.machineProfile.Size = new Size(500, 30);
 		this.machineProfile.Location = new Point(curW, curH);
 
 		curH +=this.machineProfile.Size.Height + margen;
@@ -152,31 +154,47 @@ partial class SettingForm : Form {
 		);
 
 		//SSH Key
+		curH = margen;
+
 		this.sshKeyLabel.Text = "SSH Key";
 		this.sshKeyLabel.Size = new Size(100, 30);
+		this.sshKeyLabel.Font = new Font("arial", 15f);
 		this.sshKeyLabel.Location = new Point(curW, curH);
 
+		curH += this.sshKeyLabel.Size.Height + margen;
+
 		this.privateKeyCopy.Text = "Private key Copy";
-		this.privateKeyCopy.Size = new Size(300, 25);
+		this.privateKeyCopy.Font = new Font("arial", 12f);
+		this.privateKeyCopy.Size = new Size(215, 30);
 		this.privateKeyCopy.Location = new Point(curW, curH);
 
-		this.privateKeyOpen.Text = "Open";
-		this.privateKeyOpen.Size = new Size(300, 25);
-		this.privateKeyCopy.Location = new Point(curW, curH);
+		this.privateKeyOpen.Text = "...";
+		this.privateKeyOpen.Font = new Font("arial", 12f);
+		this.privateKeyOpen.Size = new Size(50, 30);
+		this.privateKeyOpen.Location = new Point(curW + this.privateKeyCopy.Size.Width, curH);
+
+		curH += this.privateKeyOpen.Size.Height + margen;
 
 		this.publicKeyCopy.Text = "Public Key Copy";
-		this.publicKeyCopy.Size = new Size(300, 25);
+		this.publicKeyCopy.Font = new Font("arial", 12f);
+		this.publicKeyCopy.Size = new Size(215, 30);
 		this.publicKeyCopy.Location = new Point(curW, curH);
 
-		this.publicKeyOpen.Text = "Open";
-		this.publicKeyCopy.Size = new Size(300, 25);
-		this.publicKeyCopy.Location = new Point(curW, curH);
+		this.publicKeyOpen.Text = "...";
+		this.publicKeyOpen.Font = new Font("arial", 12f);
+		this.publicKeyOpen.Size = new Size(50, 30);
+		this.publicKeyOpen.Location = new Point(curW + this.privateKeyCopy.Size.Width, curH);
+
+		curH += this.publicKeyOpen.Size.Height + margen;
 
 		this.keygen.Text = "Generate";
-		this.keygen.Size = new Size(300, 25);
+		this.keygen.Font = new Font("arial", 12f);
+		this.keygen.Size = new Size(250, 30);
+		this.keygen.Location = new Point(curW, curH);
 
 		//Setting List
 		this.Controls.Add(this.settingList);
+		
 		//Remote Machines
 		this.Controls.Add(this.resourceMachineLabel);
 		this.Controls.Add(this.machineProfile);
@@ -192,7 +210,7 @@ partial class SettingForm : Form {
 		this.Controls.Add(this.password);
 		this.Controls.Add(this.profileSave);
 		this.Controls.Add(this.profileRemove);
-		/*
+		
 		//SSH key
 		this.Controls.Add(this.sshKeyLabel);
 		this.Controls.Add(this.privateKeyCopy);
@@ -200,8 +218,8 @@ partial class SettingForm : Form {
 		this.Controls.Add(this.publicKeyCopy);
 		this.Controls.Add(this.publicKeyOpen);
 		this.Controls.Add(this.keygen);
+		
 		//Priority
 		this.Controls.Add(this.usagePriorityLabel);
-		*/
 	}
 }
