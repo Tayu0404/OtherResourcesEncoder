@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
+using System.Windows.Forms;
 
-namespace Other_Resources_Encoder.Form {
-	class Class1 {
+partial class EncodeProfileForm : Form {
+	private void InitializeComponent() {
 	}
 }

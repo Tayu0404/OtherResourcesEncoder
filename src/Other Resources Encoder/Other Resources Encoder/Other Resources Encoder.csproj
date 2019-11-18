@@ -52,6 +52,12 @@
     <Compile Include="Form\AboutForm.Design.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\EncodeProfileForm.Design.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\EncodeProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\SettingForm.Design.cs">
       <SubType>Form</SubType>
     </Compile>

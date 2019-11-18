@@ -114,12 +114,12 @@ partial	class MainForm : Form {
 		this.resourceMachine.SelectedIndex = 0;
 		this.resourceMachine.DropDownStyle = ComboBoxStyle.DropDownList;
 		this.resourceMachine.Font = new Font("arial", 12f);
-		this.resourceMachine.Size = new Size(230, 0);
+		this.resourceMachine.Size = new Size(220, 0);
 		this.resourceMachine.Location = new Point(curW, curH);
 
 		this.resourceMachineSetting.Text = "Setting";
 		this.resourceMachineSetting.Font = new Font("arial", 12f);
-		this.resourceMachineSetting.Size = new Size(70, this.resourceMachine.Size.Height);
+		this.resourceMachineSetting.Size = new Size(80, this.resourceMachine.Size.Height);
 		this.resourceMachineSetting.Location = new Point(
 			encodeSettingArea - this.resourceMachineSetting.Size.Width + margen,
 			curH
@@ -134,12 +134,12 @@ partial	class MainForm : Form {
 		this.encodeProfile.SelectedIndex = 0;
 		this.encodeProfile.DropDownStyle = ComboBoxStyle.DropDownList;
 		this.encodeProfile.Font = new Font("arial", 12f);
-		this.encodeProfile.Size = new Size(230, 0);
+		this.encodeProfile.Size = new Size(220, 0);
 		this.encodeProfile.Location = new Point(curW, curH);
 
-		this.encodeProfileSaveButton.Text = "Save";
+		this.encodeProfileSaveButton.Text = "Maneger";
 		this.encodeProfileSaveButton.Font = new Font("arial", 12f);
-		this.encodeProfileSaveButton.Size = new Size(70, this.encodeProfile.Size.Height);
+		this.encodeProfileSaveButton.Size = new Size(80, this.encodeProfile.Size.Height);
 		this.encodeProfileSaveButton.Location = new Point(
 			encodeSettingArea - this.encodeProfileSaveButton.Size.Width + margen,
 			curH

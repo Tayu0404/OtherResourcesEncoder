@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using AxMSVidCtlLib;
-partial class MainForm : Form{
+partial class MainForm : Form {
 	//Menu bar 
 	private MenuStrip menuStrip;
 	private ToolStripMenuItem menuFile, menuFileNew, menuFileEixt, menuHelp, menuHelpAbout;
