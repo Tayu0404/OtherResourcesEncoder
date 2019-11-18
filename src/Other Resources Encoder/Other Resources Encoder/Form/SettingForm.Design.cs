@@ -189,7 +189,7 @@ partial class SettingForm : Form {
 
 		this.keygen.Text = "Generate";
 		this.keygen.Font = new Font("arial", 12f);
-		this.keygen.Size = new Size(250, 30);
+		this.keygen.Size = new Size(265, 30);
 		this.keygen.Location = new Point(curW, curH);
 
 		//Setting List
