@@ -22,7 +22,7 @@ partial	class MainForm : Form {
 		this.resourceMachine         = new ComboBox();
 		this.resourceMachineSetting  = new Button();
 		this.encodeProfile           = new ComboBox();
-		this.encodeProfileSaveButton = new Button();
+		this.encodeProfileManegerButton = new Button();
 		this.encoderLabel            = new Label();
 		this.encoder                 = new ComboBox();
 		this.outPutVideoCheckBox     = new CheckBox();
@@ -137,15 +137,15 @@ partial	class MainForm : Form {
 		this.encodeProfile.Size = new Size(220, 0);
 		this.encodeProfile.Location = new Point(curW, curH);
 
-		this.encodeProfileSaveButton.Text = "Maneger";
-		this.encodeProfileSaveButton.Font = new Font("arial", 12f);
-		this.encodeProfileSaveButton.Size = new Size(80, this.encodeProfile.Size.Height);
-		this.encodeProfileSaveButton.Location = new Point(
-			encodeSettingArea - this.encodeProfileSaveButton.Size.Width + margen,
+		this.encodeProfileManegerButton.Text = "Maneger";
+		this.encodeProfileManegerButton.Font = new Font("arial", 12f);
+		this.encodeProfileManegerButton.Size = new Size(80, this.encodeProfile.Size.Height);
+		this.encodeProfileManegerButton.Location = new Point(
+			encodeSettingArea - this.encodeProfileManegerButton.Size.Width + margen,
 			curH
 		);
 
-		curH += this.encodeProfileSaveButton.Size.Height + margen;
+		curH += this.encodeProfileManegerButton.Size.Height + margen;
 		
 		this.encoderLabel.Text = "Encoder :";
 		this.encoderLabel.Font = new Font("arial", 12f);
@@ -199,7 +199,7 @@ partial	class MainForm : Form {
 		this.Controls.Add(this.resourceMachine);
 		this.Controls.Add(this.resourceMachineSetting);
 		this.Controls.Add(this.encodeProfile);
-		this.Controls.Add(this.encodeProfileSaveButton);
+		this.Controls.Add(this.encodeProfileManegerButton);
 		this.Controls.Add(this.encoderLabel);
 		this.Controls.Add(this.encoder);
 		this.Controls.Add(this.outPutVideoCheckBox);
