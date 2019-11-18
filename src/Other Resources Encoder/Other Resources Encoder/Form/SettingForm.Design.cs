@@ -4,6 +4,7 @@ using System.Windows.Forms;
 
 partial class SettingForm : Form {
 	private void InitializeComponent() {
+
 		const int margen = 15;
 		int curW, curH;
 

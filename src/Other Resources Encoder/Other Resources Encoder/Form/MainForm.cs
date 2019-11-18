@@ -2,6 +2,9 @@
 using System.Windows.Forms;
 using AxMSVidCtlLib;
 partial class MainForm : Form{
+	//Menu bar 
+	private MenuStrip menuStrip;
+	private ToolStripMenuItem menuFile, menuFileNew, menuFileEixt, menuHelp, menuHelpAbout;
 
 	//Encode Setting
 	private Label encodeLabel, outPutFileNameLabel, encoderLabel, outPutVideoLabel, outPutAudioLabel;

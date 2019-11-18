@@ -8,7 +8,13 @@ partial	class MainForm : Form {
 		int margen = 15;
 		int curW, curH;
 
-
+		//Menu Var 
+		this.menuStrip               = new MenuStrip();
+		this.menuFile                = new ToolStripMenuItem();
+		this.menuFileNew             = new ToolStripMenuItem();
+		this.menuFileEixt            = new ToolStripMenuItem();
+		this.menuHelp                = new ToolStripMenuItem();
+		this.menuHelpAbout           = new ToolStripMenuItem();
 		//Encode Setting
 		this.encodeLabel             = new Label();
 		this.outPutFileNameLabel     = new Label();
@@ -31,14 +37,42 @@ partial	class MainForm : Form {
 
 		curW = curH = margen;
 
+		//Client
 		this.Text = "Other Resource Encoder";
 		int mainFormW = (int)Math.Round(Screen.GetWorkingArea(this).Width * 0.9);
 		int mainFormH = (int)Math.Round(Screen.GetWorkingArea(this).Height * 0.9);
 		this.ClientSize = new Size(mainFormW, mainFormH);
 		this.MinimumSize = new Size(encodeSettingArea + margen * 3, 0);
+		this.MainMenuStrip = menuStrip;
 		this.WindowState = FormWindowState.Maximized;
 
-		//Menu
+		//Menu Bar
+		this.menuFile.Text = "File(F)";
+		this.menuFile.DropDownItems.AddRange(new ToolStripItem[] {
+			this.menuFileNew,
+			this.menuFileEixt,
+		});
+
+		this.menuFileNew.Text = "New(N)";
+		this.menuFileNew.ShortcutKeys = Keys.Control | Keys.N;
+
+		this.menuFileEixt.Text = "Exit(X)";
+		this.menuFileEixt.ShortcutKeys = Keys.Alt | Keys.F4;
+
+		this.menuHelp.Text = "Help(H)";
+		this.menuHelp.DropDownItems.AddRange(new ToolStripItem[] {
+			this.menuHelpAbout,
+		});
+
+		this.menuHelpAbout.Text = "About(A)";
+		
+		this.menuStrip.Items.AddRange(new ToolStripItem[]{
+			this.menuFile,
+			this.menuHelp,
+		});
+
+		//Form
+		curH += MainMenuStrip.Size.Height;
 
 		this.encodeLabel.Text = "Encode";
 		this.encodeLabel.Font = new Font("arial", 17f);
@@ -156,6 +190,7 @@ partial	class MainForm : Form {
 		this.outPutAudioLabel.Size = new Size(120, 30);
 		this.outPutAudioLabel.Location = new Point(outputSettingsWidth, curH);
 
+		this.Controls.Add(this.menuStrip);
 		this.Controls.Add(this.encodeLabel);
 		this.Controls.Add(this.videoPreview);
 		this.Controls.Add(this.outPutFileNameLabel);
