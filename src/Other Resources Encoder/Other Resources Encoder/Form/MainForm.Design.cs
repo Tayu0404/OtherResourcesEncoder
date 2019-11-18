@@ -58,6 +58,7 @@ partial	class MainForm : Form {
 
 		this.menuFileEixt.Text = "Exit(X)";
 		this.menuFileEixt.ShortcutKeys = Keys.Alt | Keys.F4;
+		this.menuFileEixt.Click += new EventHandler(menuFileExitClick);
 
 		this.menuHelp.Text = "Help(H)";
 		this.menuHelp.DropDownItems.AddRange(new ToolStripItem[] {

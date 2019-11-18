@@ -19,6 +19,9 @@ partial class MainForm : Form{
 	public MainForm() {
 		InitializeComponent();
 	}
+	private void menuFileExitClick(object sender, EventArgs e) {
+		this.Close();
+	}
 	
 	private void resourceMachineSettingClick(object sender, EventArgs e) {
 		SettingForm settingForm = new SettingForm();
