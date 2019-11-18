@@ -10,6 +10,7 @@ partial class SettingForm : Form {
 
 		//Setting List
 		this.settingList = new ListBox();
+		this.okButton = new Button();
 		//Remote Machines
 		this.resourceMachineLabel = new Label();
 		this.machineProfile = new ComboBox();
@@ -43,6 +44,7 @@ partial class SettingForm : Form {
 		this.MinimizeBox = false;
 		this.ShowInTaskbar = false;
 		this.FormBorderStyle = FormBorderStyle.FixedSingle;
+		this.AcceptButton = okButton;
 
 		curW = curH = margen;
 
@@ -56,6 +58,15 @@ partial class SettingForm : Form {
 		this.settingList.Size = new Size(250, this.ClientSize.Height - margen * 2);
 		this.settingList.Location = new Point(curW, curH);
 		this.settingList.SelectedIndexChanged += new EventHandler(settingListChange);
+
+		this.okButton.Text = "OK";
+		this.okButton.DialogResult = DialogResult.OK;
+		this.okButton.Font = new Font("arial", 12f);
+		this.okButton.Size = new Size(150, 30);
+		this.okButton.Location = new Point(
+			this.ClientSize.Width - margen - this.okButton.Size.Width,
+			this.ClientSize.Height - margen - this.okButton.Size.Height
+		);
 
 		curW = this.settingList.Size.Width + margen * 2;
 
@@ -195,6 +206,7 @@ partial class SettingForm : Form {
 
 		//Setting List
 		this.Controls.Add(this.settingList);
+		this.Controls.Add(this.okButton);
 		
 		//Remote Machines
 		this.Controls.Add(this.resourceMachineLabel);

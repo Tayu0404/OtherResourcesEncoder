@@ -4,6 +4,7 @@ using System.Windows.Forms;
 
 partial class SettingForm : Form {
 	private ListBox settingList;
+	private Button okButton;
 	//Remote Machine
 	private Label resourceMachineLabel, profileLabel, hostLabel, portLabel, userLabel, passLabel;
 	private ComboBox machineProfile;
