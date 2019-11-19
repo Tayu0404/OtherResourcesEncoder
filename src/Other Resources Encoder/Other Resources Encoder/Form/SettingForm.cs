@@ -109,7 +109,18 @@ partial class SettingForm : Form {
 
 	private void keygenClick (object sender, EventArgs e) {
 		SSHKey sshKey = new SSHKey();
-		sshKey.SSHKeygen();
+		var keygen = sshKey.SSHKeygen();
+
+		if (!keygen) {
+			var overwriteCheck = MessageBox.Show(
+				"SSH Key already exists. Do you want to generate it?",
+				"Attention",
+				MessageBoxButtons.YesNo
+			);
+			if (overwriteCheck == DialogResult.Yes) {
+				sshKey.SSHKeygen(true);
+			}
+		}
 	}
 
 	public SettingForm() {
