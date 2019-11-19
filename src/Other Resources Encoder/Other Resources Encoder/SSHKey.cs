@@ -20,6 +20,18 @@ class SSHKey {
 		}
 	}
 
+	public string PrivateKey {
+		get {
+			return File.ReadAllText(privateKeyFilePath);
+		}
+	}
+
+	public string PublicKey {
+		get {
+			return File.ReadAllText(publicKeyFilePath);
+		}
+	}
+
 	public bool SSHKeyCheck() {
 		bool privateKeyExists, publicKeyExists;
 

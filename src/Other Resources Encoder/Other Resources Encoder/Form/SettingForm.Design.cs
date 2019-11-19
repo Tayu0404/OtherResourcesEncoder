@@ -179,6 +179,7 @@ partial class SettingForm : Form {
 		this.privateKeyCopy.Font = new Font("arial", 12f);
 		this.privateKeyCopy.Size = new Size(215, 30);
 		this.privateKeyCopy.Location = new Point(curW, curH);
+		this.privateKeyCopy.Click += new EventHandler(privateKeyCopyClick);
 
 		this.privateKeyOpen.Text = "...";
 		this.privateKeyOpen.Font = new Font("arial", 12f);
@@ -191,6 +192,7 @@ partial class SettingForm : Form {
 		this.publicKeyCopy.Font = new Font("arial", 12f);
 		this.publicKeyCopy.Size = new Size(215, 30);
 		this.publicKeyCopy.Location = new Point(curW, curH);
+		this.publicKeyCopy.Click += new EventHandler(publicKeyCopyClick);
 
 		this.publicKeyOpen.Text = "...";
 		this.publicKeyOpen.Font = new Font("arial", 12f);

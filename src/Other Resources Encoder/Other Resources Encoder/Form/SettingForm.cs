@@ -123,6 +123,16 @@ partial class SettingForm : Form {
 		}
 	}
 
+	private void privateKeyCopyClick(object sender, EventArgs e) {
+		SSHKey sshKey = new SSHKey();
+		Clipboard.SetText(sshKey.PrivateKey);
+	}
+
+	private void publicKeyCopyClick(object sender, EventArgs e) {
+		SSHKey sshKey = new SSHKey();
+		Clipboard.SetText(sshKey.PublicKey);
+	}
+
 	public SettingForm() {
 		InitializeComponent();
 	}
