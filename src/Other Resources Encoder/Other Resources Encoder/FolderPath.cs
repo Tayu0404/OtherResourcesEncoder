@@ -1,6 +1,23 @@
 ﻿using System;
+using System.IO;
 
 class FolderPath {
+
+	public void FolderPathCheck (){
+		if (!Directory.Exists(this.OREFolderPath)) {
+			Directory.CreateDirectory(this.OREFolderPath);
+		}
+		if (!Directory.Exists(this.SSHKeyFolderPath)) {
+			Directory.CreateDirectory(this.SSHKeyFolderPath);
+		}
+		if (!Directory.Exists(this.EncodeProfileFolderPath)) {
+			Directory.CreateDirectory(this.EncodeProfileFolderPath);
+		}
+		if (!Directory.Exists(this.ResourceMachinesFolderPath)) {
+			Directory.CreateDirectory(this.ResourceMachinesFolderPath);
+		}
+	}
+
 	public string OREFolderPath {
 		get {
 			string oreForlderPath;
