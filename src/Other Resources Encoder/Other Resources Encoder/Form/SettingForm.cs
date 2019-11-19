@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -131,6 +132,16 @@ partial class SettingForm : Form {
 	private void publicKeyCopyClick(object sender, EventArgs e) {
 		SSHKey sshKey = new SSHKey();
 		Clipboard.SetText(sshKey.PublicKey);
+	}
+
+	private void privateKeyOpenClick(object sender, EventArgs e) {
+		FolderPath folderPath = new FolderPath();
+		Process.Start(folderPath.SSHKeyFolderPath);
+	}
+
+	private void publicKeyOpenClick(object sender, EventArgs e) {
+		FolderPath folderPath = new FolderPath();
+		Process.Start(folderPath.SSHKeyFolderPath);
 	}
 
 	public SettingForm() {

@@ -185,6 +185,7 @@ partial class SettingForm : Form {
 		this.privateKeyOpen.Font = new Font("arial", 12f);
 		this.privateKeyOpen.Size = new Size(50, 30);
 		this.privateKeyOpen.Location = new Point(curW + this.privateKeyCopy.Size.Width, curH);
+		this.privateKeyOpen.Click += new EventHandler(privateKeyOpenClick);
 
 		curH += this.privateKeyOpen.Size.Height + margen;
 
@@ -198,6 +199,7 @@ partial class SettingForm : Form {
 		this.publicKeyOpen.Font = new Font("arial", 12f);
 		this.publicKeyOpen.Size = new Size(50, 30);
 		this.publicKeyOpen.Location = new Point(curW + this.privateKeyCopy.Size.Width, curH);
+		this.publicKeyOpen.Click += new EventHandler(publicKeyOpenClick);
 
 		curH += this.publicKeyOpen.Size.Height + margen;
 
