@@ -144,6 +144,7 @@ partial	class MainForm : Form {
 			encodeSettingArea - this.encodeProfileManegerButton.Size.Width + margen,
 			curH
 		);
+		this.encodeProfileManegerButton.Click += new EventHandler(encodeProfileManegerButtonClick);
 
 		curH += this.encodeProfileManegerButton.Size.Height + margen;
 		

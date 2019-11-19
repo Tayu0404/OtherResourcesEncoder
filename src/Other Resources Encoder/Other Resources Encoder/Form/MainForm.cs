@@ -34,4 +34,9 @@ partial class MainForm : Form {
 		settingForm.SelectSetting = "Resource Machines";
 		settingForm.ShowDialog();
 	}
+
+	private void encodeProfileManegerButtonClick(object sender, EventArgs e){
+		EncodeProfileForm encodeProfileForm = new EncodeProfileForm();
+		encodeProfileForm.ShowDialog();
+	}
 }
