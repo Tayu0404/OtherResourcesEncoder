@@ -74,6 +74,7 @@ partial class EncodeProfileForm : Form {
 			this.profileSave.Location.X - this.profileCancel.Size.Width,
 			curH
 		);
+
 		this.Controls.Add(this.acceptButton);
 		this.Controls.Add(this.cancelButton);
 		this.Controls.Add(this.profileList);

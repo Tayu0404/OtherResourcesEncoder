@@ -52,7 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SSHKeygen.cs" />
+    <Compile Include="FolderPath.cs" />
+    <Compile Include="SSHKey.cs" />
     <Compile Include="Form\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
