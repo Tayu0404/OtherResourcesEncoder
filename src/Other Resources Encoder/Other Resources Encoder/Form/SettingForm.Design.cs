@@ -203,6 +203,7 @@ partial class SettingForm : Form {
 		this.keygen.Font = new Font("arial", 12f);
 		this.keygen.Size = new Size(265, 30);
 		this.keygen.Location = new Point(curW, curH);
+		this.keygen.Click += new EventHandler(keygenClick);
 
 		//Setting List
 		this.Controls.Add(this.settingList);

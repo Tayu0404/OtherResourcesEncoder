@@ -107,6 +107,11 @@ partial class SettingForm : Form {
 		}
 	}
 
+	private void keygenClick (object sender, EventArgs e) {
+		SSHKey sshKey = new SSHKey();
+		sshKey.SSHKeygen();
+	}
+
 	public SettingForm() {
 		InitializeComponent();
 	}

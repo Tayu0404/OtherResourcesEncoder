@@ -32,10 +32,13 @@ class SSHKey {
 		return false;
 	}
 	
-	public bool SSHKeygen(string userName) {
-		if (this.SSHKeyCheck()) {
-			return false;
+	public bool SSHKeygen(bool overwrite = false) {
+		if (!overwrite) {
+			if (this.SSHKeyCheck()) {
+				return false;
+			}
 		}
+		var userName = Environment.UserName;
 		var machineName = Environment.MachineName;
 		var keyGenerator = new SshKeyGenerator.SshKeyGenerator(3072);
 		var privateKey = keyGenerator.ToPrivateKey();
