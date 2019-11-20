@@ -13,3 +13,22 @@ Get a comfortable working environment.
 ### Remote
 * OpenSSH
 * ffmpeg
+
+## Library
+### SshKeyGenerator
+* Shawlnnes
+
+### SSH.NET
+* Renci
+
+### LivVLCSharp
+* VideoLAN
+* LGPL-2.1-or-later
+
+[Source](https://code.videolan.org/videolan/LibVLCSharp)
+
+### LivVLCSharp.WinForms
+* VideoLAN
+* LGPL-2.1-or-later
+
+[Source](https://code.videolan.org/videolan/LibVLCSharp)
