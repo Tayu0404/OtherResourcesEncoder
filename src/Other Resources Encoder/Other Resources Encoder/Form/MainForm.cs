@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using AxMSVidCtlLib;
+using LibVLCSharp.Shared;
+using LibVLCSharp.WinForms;
 partial class MainForm : Form {
 	//Menu bar 
 	private MenuStrip menuStrip;
@@ -14,10 +15,20 @@ partial class MainForm : Form {
 	private CheckBox outPutVideoCheckBox, outPutAudioCheckBox;
 
 	//Video Preview
-	private AxMSVidCtl videoPreview;
-
+	private LibVLC livVLC;
+	private MediaPlayer mediaPlayer;
+	private VideoView videoView;
+	
 	public MainForm() {
+		if (!DesignMode) {
+			Core.Initialize();
+		}
 		InitializeComponent();
+		Load += mainFormLoad;
+	}
+
+	private void mainFormLoad(object sender, EventArgs e) {
+		this.mediaPlayer.Play(new Media(this.livVLC, "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", FromType.FromLocation));
 	}
 
 	private void menuFileExitClick(object sender, EventArgs e) {

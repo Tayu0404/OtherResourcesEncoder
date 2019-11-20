@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using AxMSVidCtlLib;
+using LibVLCSharp.Shared;
+using LibVLCSharp.WinForms;
 
 partial	class MainForm : Form {
 	private void InitializeComponent() {
@@ -31,7 +32,9 @@ partial	class MainForm : Form {
 		this.outPutAudioLabel        = new Label();
 
 		//Video Preview
-		this.videoPreview = new AxMSVidCtl();
+		this.livVLC = new LibVLC();
+		this.mediaPlayer = new MediaPlayer(this.livVLC);
+		this.videoView = new VideoView();
 
 		int encodeSettingArea = 300;
 
@@ -80,14 +83,16 @@ partial	class MainForm : Form {
 		this.encodeLabel.Size = new Size(300, 25);
 		this.encodeLabel.Location = new Point(curW, curH);
 
-		int videoPreviewWidth  = this.ClientSize.Width - (encodeSettingArea + margen * 3);
-		int videoPreviewHeigth = (int)Math.Round((double)(videoPreviewWidth / 16 * 9));
-		this.videoPreview.Size = new Size(videoPreviewWidth, videoPreviewHeigth);
-		this.videoPreview.Location = new Point(
+		this.videoView.MediaPlayer = mediaPlayer;
+		this.videoView.BackColor = Color.Black;
+		int videoViewWidth  = this.ClientSize.Width - (encodeSettingArea + margen * 3);
+		int videoViewHeigth = (int)Math.Round((double)(videoViewWidth / 16 * 9));
+		this.videoView.Size = new Size(videoViewWidth, videoViewHeigth);
+		this.videoView.Location = new Point(
 			encodeSettingArea + margen * 2,
 			curH
 		);
-		this.videoPreview.Anchor = (
+		this.videoView.Anchor = (
 			AnchorStyles.Top |
 			AnchorStyles.Bottom |
 			AnchorStyles.Left |
@@ -194,7 +199,7 @@ partial	class MainForm : Form {
 
 		this.Controls.Add(this.menuStrip);
 		this.Controls.Add(this.encodeLabel);
-		this.Controls.Add(this.videoPreview);
+		this.Controls.Add(this.videoView);
 		this.Controls.Add(this.outPutFileNameLabel);
 		this.Controls.Add(this.outPutFileName);
 		this.Controls.Add(this.resourceMachine);
