@@ -135,13 +135,13 @@ partial class SettingForm : Form {
 	}
 
 	private void privateKeyOpenClick(object sender, EventArgs e) {
-		FolderPath folderPath = new FolderPath();
-		Process.Start(folderPath.SSHKeyFolderPath);
+		SSHKey sshKey = new SSHKey();
+		Process.Start("EXPLORER.EXE", "/select," + sshKey.PrivateKeyFilePath);
 	}
 
 	private void publicKeyOpenClick(object sender, EventArgs e) {
-		FolderPath folderPath = new FolderPath();
-		Process.Start(folderPath.SSHKeyFolderPath);
+		SSHKey sshKey = new SSHKey();
+		Process.Start("EXPLORER.EXE", "/e,/select," + sshKey.PublicKeyFilePath);
 	}
 
 	public SettingForm() {

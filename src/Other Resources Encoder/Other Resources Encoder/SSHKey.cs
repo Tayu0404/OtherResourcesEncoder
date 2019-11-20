@@ -2,41 +2,41 @@
 using System.IO;
 
 class SSHKey {
-	private string privateKeyFilePath {
+	public string PrivateKeyFilePath {
 		get {
 			FolderPath folderPath = new FolderPath();
 			string sshKeyFolderPath = folderPath.SSHKeyFolderPath;
-			var filePath = sshKeyFolderPath + "\\id_rsa";
+			var filePath = sshKeyFolderPath + "id_rsa";
 			return filePath;
 		}
 	}
 
-	private string publicKeyFilePath {
+	public string PublicKeyFilePath {
 		get {
 			FolderPath folderPath = new FolderPath();
 			string sshKeyFolderPath = folderPath.SSHKeyFolderPath;
-			var filePath = sshKeyFolderPath + "\\id_rsa.pub";
+			var filePath = sshKeyFolderPath + "id_rsa.pub";
 			return filePath;
 		}
 	}
 
 	public string PrivateKey {
 		get {
-			return File.ReadAllText(privateKeyFilePath);
+			return File.ReadAllText(PrivateKeyFilePath);
 		}
 	}
 
 	public string PublicKey {
 		get {
-			return File.ReadAllText(publicKeyFilePath);
+			return File.ReadAllText(PublicKeyFilePath);
 		}
 	}
 
 	public bool SSHKeyCheck() {
 		bool privateKeyExists, publicKeyExists;
 
-		privateKeyExists = File.Exists(this.privateKeyFilePath);
-		publicKeyExists = File.Exists(this.publicKeyFilePath);
+		privateKeyExists = File.Exists(this.PrivateKeyFilePath);
+		publicKeyExists = File.Exists(this.PublicKeyFilePath);
 
 		if (privateKeyExists | publicKeyExists) {
 			return true;
@@ -55,8 +55,8 @@ class SSHKey {
 		var keyGenerator = new SshKeyGenerator.SshKeyGenerator(3072);
 		var privateKey = keyGenerator.ToPrivateKey();
 		var publicKey = keyGenerator.ToRfcPublicKey(userName + "@" + machineName + "-ORE");
-		File.WriteAllText(this.privateKeyFilePath, privateKey);
-		File.WriteAllText(this.publicKeyFilePath, publicKey);
+		File.WriteAllText(this.PrivateKeyFilePath, privateKey);
+		File.WriteAllText(this.PublicKeyFilePath, publicKey);
 		return true;
 	}
 }
