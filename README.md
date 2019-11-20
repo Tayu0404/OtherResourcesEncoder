@@ -32,3 +32,9 @@ Get a comfortable working environment.
 * LGPL-2.1-or-later
 
 [Source](https://code.videolan.org/videolan/LibVLCSharp)
+
+### VideoLAN.LibVLC.Windows
+* VideoLAN
+* LGPL-2.1-or-later
+
+[Source](https://code.videolan.org/videolan/libvlc-nuget)
