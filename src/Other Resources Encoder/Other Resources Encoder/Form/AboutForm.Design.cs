@@ -9,17 +9,27 @@ partial class AboutForm : Form {
 
 		//Client
 		this.Name = "Setting";
-		this.ClientSize = new Size(300 + margen * 2, 200);
+		this.ClientSize = new Size(150 + 300 + margen * 3, 300);
 		this.StartPosition = FormStartPosition.CenterParent;
 		this.MaximizeBox = false;
 		this.MinimizeBox = false;
 		this.ShowInTaskbar = false;
 		curW = curH = margen;
-
+		this.itemList  = new ListBox();
 		this.ore       = new Label();
 		this.version   = new Label();
 		this.copyright = new Label();
 		this.license   = new Label();
+
+		this.itemList.Items.AddRange(new Object[]{
+			"About",
+			"Licenses",
+		});
+		this.Font = new Font("arial", 12f);
+		this.itemList.Size = new Size(150, this.ClientSize.Height - margen * 2);
+		this.itemList.Location = new Point(curW, curH);
+
+		curW += this.itemList.Size.Width + margen;
 
 		this.ore.Text = "Other Resources Encoder";
 		this.ore.Font = new Font("arial", 17f);
@@ -51,6 +61,7 @@ partial class AboutForm : Form {
 		this.license.Size = new Size(300, 30);
 		this.license.Location = new Point(curW, curH);
 
+		this.Controls.Add(this.itemList);
 		this.Controls.Add(this.ore);
 		this.Controls.Add(this.version);
 		this.Controls.Add(this.copyright);
