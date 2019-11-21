@@ -17,24 +17,28 @@ Get a comfortable working environment.
 ## Library
 ### SshKeyGenerator
 * Shawlnnes
+* MIT License
+* [Source](https://github.com/ShawInnes/SshKeyGenerator)
 
 ### SSH.NET
 * Renci
+* MIT License
+* [Source](https://github.com/sshnet/SSH.NET)
 
 ### LivVLCSharp
 * VideoLAN
-* LGPL-2.1-or-later
-
-[Source](https://code.videolan.org/videolan/LibVLCSharp)
+* Copyright (C) 1991, 1999 Free Software Foundation, Inc.
+* LGPL-2.1-or-later License
+* [Source](https://code.videolan.org/videolan/LibVLCSharp)
 
 ### LivVLCSharp.WinForms
 * VideoLAN
-* LGPL-2.1-or-later
-
-[Source](https://code.videolan.org/videolan/LibVLCSharp)
+* Copyright (C) 1991, 1999 Free Software Foundation, Inc.
+* LGPL-2.1-or-later License
+* [Source](https://code.videolan.org/videolan/LibVLCSharp)
 
 ### VideoLAN.LibVLC.Windows
 * VideoLAN
-* LGPL-2.1-or-later
-
-[Source](https://code.videolan.org/videolan/libvlc-nuget)
+* Copyright (C) 1991, 1999 Free Software Foundation, Inc.
+* LGPL-2.1-or-later License
+* [Source](https://code.videolan.org/videolan/libvlc-nuget)
