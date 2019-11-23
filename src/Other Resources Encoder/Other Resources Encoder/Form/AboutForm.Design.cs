@@ -15,6 +15,7 @@ partial class AboutForm : Form {
 		this.MinimizeBox = false;
 		this.ShowInTaskbar = false;
 		curW = curH = margen;
+
 		this.itemList  = new ListBox();
 		this.ore       = new Label();
 		this.version   = new Label();

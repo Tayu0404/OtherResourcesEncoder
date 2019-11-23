@@ -41,8 +41,9 @@
     <Reference Include="LibVLCSharp.WinForms, Version=3.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LibVLCSharp.WinForms.3.3.1\lib\net40\LibVLCSharp.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
-      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    <Reference Include="Renci.SshNet, Version=2017.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SSH.NET.darinkes.openssh_format_rsa\lib\Renci.SshNet.dll</HintPath>
     </Reference>
     <Reference Include="SshKeyGenerator, Version=1.1.31.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SshKeyGenerator.1.1.31\lib\net452\SshKeyGenerator.dll</HintPath>
