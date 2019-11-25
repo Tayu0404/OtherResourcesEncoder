@@ -24,15 +24,15 @@ partial class AboutForm : Form {
 		this.copyright    = new Label();
 		this.license      = new Label();
 		//Package Licenses;
-		this.licenses     = new DataGrid();
-		this.licensesData = new DataSet();
+		this.licenses     = new ListBox();
+		this.packageInfo = new TextBox();
 
 		this.itemList.Items.AddRange(new Object[]{
 			"About",
 			"Licenses",
 		});
 		this.Font = new Font("arial", 12f);
-		this.itemList.Size = new Size(150, this.ClientSize.Height - margen * 2);
+		this.itemList.Size = new Size(150, this.ClientSize.Height - margen);
 		this.itemList.Location = new Point(curW, curH);
 
 		curW += this.itemList.Size.Width + margen;
@@ -70,9 +70,23 @@ partial class AboutForm : Form {
 		//Package Licenses
 		curH = margen;
 
-		this.licenses.Size = new Size(300, this.ClientSize.Height - margen * 2);
+		makePackagesData();
+		foreach (package package in this.packagesData) {
+			this.licenses.Items.Add(package.name);
+		}
+		this.licenses.Size = new Size(
+			this.ClientSize.Width - curW - margen,
+			100
+		);
 		this.licenses.Location = new Point(curW, curH);
-		makeLicensesData();
+
+		curH += this.licenses.Size.Height + margen;
+
+		this.packageInfo.Size = new Size(
+			this.licenses.Size.Width,
+			this.ClientSize.Height - curH - margen
+		);
+		this.packageInfo.Location = new Point(curW, curH);
 
 		this.Controls.Add(this.itemList);
 		/*
@@ -82,5 +96,6 @@ partial class AboutForm : Form {
 		this.Controls.Add(this.license);
 		*/
 		this.Controls.Add(this.licenses);
+		this.Controls.Add(this.packageInfo);
 	}
 }
