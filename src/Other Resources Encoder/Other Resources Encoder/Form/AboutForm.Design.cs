@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -15,12 +16,16 @@ partial class AboutForm : Form {
 		this.MinimizeBox = false;
 		this.ShowInTaskbar = false;
 		curW = curH = margen;
-
-		this.itemList  = new ListBox();
-		this.ore       = new Label();
-		this.version   = new Label();
-		this.copyright = new Label();
-		this.license   = new Label();
+		 
+		this.itemList     = new ListBox();
+		//ORE
+		this.ore          = new Label();
+		this.version      = new Label();
+		this.copyright    = new Label();
+		this.license      = new Label();
+		//Package Licenses;
+		this.licenses     = new DataGrid();
+		this.licensesData = new DataSet();
 
 		this.itemList.Items.AddRange(new Object[]{
 			"About",
@@ -62,10 +67,20 @@ partial class AboutForm : Form {
 		this.license.Size = new Size(300, 30);
 		this.license.Location = new Point(curW, curH);
 
+		//Package Licenses
+		curH = margen;
+
+		this.licenses.Size = new Size(300, this.ClientSize.Height - margen * 2);
+		this.licenses.Location = new Point(curW, curH);
+		makeLicensesData();
+
 		this.Controls.Add(this.itemList);
+		/*
 		this.Controls.Add(this.ore);
 		this.Controls.Add(this.version);
 		this.Controls.Add(this.copyright);
 		this.Controls.Add(this.license);
+		*/
+		this.Controls.Add(this.licenses);
 	}
 }
