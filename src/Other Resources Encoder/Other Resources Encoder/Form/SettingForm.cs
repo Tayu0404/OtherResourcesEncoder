@@ -7,10 +7,10 @@ partial class SettingForm : Form {
 	private ListBox settingList;
 	private Button okButton;
 	//Remote Machine
-	private Label resourceMachineLabel, profileLabel, hostLabel, portLabel, userLabel, passLabel;
+	private Label resourceMachineLabel, profileLabel, hostLabel, portLabel, userLabel, passLabel, identityLabel;
 	private ComboBox machineProfile;
-	private TextBox profileName, host, port, user, password;
-	private Button profileSave, profileRemove;
+	private TextBox profileName, host, port, user, password, identityFile;
+	private Button profileSave, profileRemove, identityFileOpen;
 	//SSH Key
 	private Label sshKeyLabel;
 	private Button privateKeyCopy, privateKeyOpen, publicKeyCopy, publicKeyOpen, keygen;
@@ -28,83 +28,103 @@ partial class SettingForm : Form {
 			case ("Resource Machines"):
 				//Remote Machines
 				this.resourceMachineLabel.Visible = true;
-				this.machineProfile.Visible = true;
-				this.profileLabel.Visible = true;
-				this.profileName.Visible = true;
-				this.hostLabel.Visible = true;
-				this.host.Visible = true;
-				this.portLabel.Visible = true;
-				this.port.Visible = true;
-				this.userLabel.Visible = true;
-				this.user.Visible = true;
-				this.passLabel.Visible = true;
-				this.password.Visible = true;
-				this.profileSave.Visible = true;
-				this.profileRemove.Visible = true;
+				this.machineProfile.Visible       = true;
+				this.profileLabel.Visible         = true;
+				this.profileName.Visible          = true;
+				this.hostLabel.Visible            = true;
+				this.host.Visible                 = true;
+				this.portLabel.Visible            = true;
+				this.port.Visible                 = true;
+				this.userLabel.Visible            = true;
+				this.user.Visible                 = true;
+				this.passLabel.Visible            = true;
+				this.password.Visible             = true;
+				this.identityLabel.Visible        = true;
+				this.identityFile.Visible         = true;
+				this.identityFileOpen.Visible     = true;
+				this.profileSave.Visible          = true;
+				this.profileRemove.Visible        = true;
 				//SSH key
-				this.sshKeyLabel.Visible = false;
-				this.privateKeyCopy.Visible = false;
-				this.privateKeyOpen.Visible = false;
-				this.publicKeyCopy.Visible = false;
-				this.publicKeyOpen.Visible = false;
-				this.keygen.Visible = false;
+				this.sshKeyLabel.Visible          = false;
+				this.privateKeyCopy.Visible       = false;
+				this.privateKeyOpen.Visible       = false;
+				this.publicKeyCopy.Visible        = false;
+				this.publicKeyOpen.Visible        = false;
+				this.keygen.Visible               = false;
 				//Priority
-				this.usagePriorityLabel.Visible = false;
+				this.usagePriorityLabel.Visible   = false;
 				break;
 			
 			case ("Usage Priority"):
 				//Remote Machines
 				this.resourceMachineLabel.Visible = false;
-				this.machineProfile.Visible = false;
-				this.profileLabel.Visible = false;
-				this.profileName.Visible = false;
-				this.hostLabel.Visible = false;
-				this.host.Visible = false;
-				this.portLabel.Visible = false;
-				this.port.Visible = false;
-				this.userLabel.Visible = false;
-				this.user.Visible = false;
-				this.passLabel.Visible = false;
-				this.password.Visible = false;
-				this.profileSave.Visible = false;
-				this.profileRemove.Visible = false;
+				this.machineProfile.Visible       = false;
+				this.profileLabel.Visible         = false;
+				this.profileName.Visible          = false;
+				this.hostLabel.Visible            = false;
+				this.host.Visible                 = false;
+				this.portLabel.Visible            = false;
+				this.port.Visible                 = false;
+				this.userLabel.Visible            = false;
+				this.user.Visible                 = false;
+				this.passLabel.Visible            = false;
+				this.password.Visible             = false;
+				this.identityLabel.Visible        = false;
+				this.identityFile.Visible         = false;
+				this.identityFileOpen.Visible     = false;
+				this.profileSave.Visible          = false;
+				this.profileRemove.Visible        = false;
 				//SSH key
-				this.sshKeyLabel.Visible = false;
-				this.privateKeyCopy.Visible = false;
-				this.privateKeyOpen.Visible = false;
-				this.publicKeyCopy.Visible = false;
-				this.publicKeyOpen.Visible = false;
-				this.keygen.Visible = false;
+				this.sshKeyLabel.Visible          = false;
+				this.privateKeyCopy.Visible       = false;
+				this.privateKeyOpen.Visible       = false;
+				this.publicKeyCopy.Visible        = false;
+				this.publicKeyOpen.Visible        = false;
+				this.keygen.Visible               = false;
 				//Priority
-				this.usagePriorityLabel.Visible = true;
+				this.usagePriorityLabel.Visible   = true;
 				break;
 
 			case ("SSH Key"):
 				//Remote Machines
 				this.resourceMachineLabel.Visible = false;
-				this.machineProfile.Visible = false;
-				this.profileLabel.Visible = false;
-				this.profileName.Visible = false;
-				this.hostLabel.Visible = false;
-				this.host.Visible = false;
-				this.portLabel.Visible = false;
-				this.port.Visible = false;
-				this.userLabel.Visible = false;
-				this.user.Visible = false;
-				this.passLabel.Visible = false;
-				this.password.Visible = false;
-				this.profileSave.Visible = false;
-				this.profileRemove.Visible = false;
+				this.machineProfile.Visible       = false;
+				this.profileLabel.Visible         = false;
+				this.profileName.Visible          = false;
+				this.hostLabel.Visible            = false;
+				this.host.Visible                 = false;
+				this.portLabel.Visible            = false;
+				this.port.Visible                 = false;
+				this.userLabel.Visible            = false;
+				this.user.Visible                 = false;
+				this.passLabel.Visible            = false;
+				this.password.Visible             = false;
+				this.identityLabel.Visible        = false;
+				this.identityFile.Visible         = false;
+				this.identityFileOpen.Visible     = false;
+				this.profileSave.Visible          = false;
+				this.profileRemove.Visible        = false;
 				//SSH key
-				this.sshKeyLabel.Visible = true;
-				this.privateKeyCopy.Visible = true;
-				this.privateKeyOpen.Visible = true;
-				this.publicKeyCopy.Visible = true;
-				this.publicKeyOpen.Visible = true;
-				this.keygen.Visible = true;
+				this.sshKeyLabel.Visible          = true;
+				this.privateKeyCopy.Visible       = true;
+				this.privateKeyOpen.Visible       = true;
+				this.publicKeyCopy.Visible        = true;
+				this.publicKeyOpen.Visible        = true;
+				this.keygen.Visible               = true;
 				//Priority
-				this.usagePriorityLabel.Visible = false;
+				this.usagePriorityLabel.Visible   = false;
 				break;
+		}
+	}
+
+	private void identityFileOpenClick(object sender, EventArgs e) {
+		OpenFileDialog openFile = new OpenFileDialog() {
+			Multiselect = false,
+		};
+
+		DialogResult result = openFile.ShowDialog();
+		if (result == DialogResult.OK) {
+			this.identityFile.Text = openFile.FileName;
 		}
 	}
 

@@ -9,32 +9,35 @@ partial class SettingForm : Form {
 		int curW, curH;
 
 		//Setting List
-		this.settingList = new ListBox();
-		this.okButton = new Button();
+		this.settingList          = new ListBox();
+		this.okButton             = new Button();
 		//Remote Machines
 		this.resourceMachineLabel = new Label();
-		this.machineProfile = new ComboBox();
-		this.profileLabel = new Label();
-		this.profileName = new TextBox();
-		this.hostLabel = new Label();
-		this.host = new TextBox();
-		this.portLabel = new Label();
-		this.port = new TextBox();
-		this.userLabel = new Label();
-		this.user = new TextBox();
-		this.passLabel = new Label();
-		this.password = new TextBox();
-		this.profileSave = new Button();
-		this.profileRemove = new Button();
+		this.machineProfile       = new ComboBox();
+		this.profileLabel         = new Label();
+		this.profileName          = new TextBox();
+		this.hostLabel            = new Label();
+		this.host                 = new TextBox();
+		this.portLabel            = new Label();
+		this.port                 = new TextBox();
+		this.userLabel            = new Label();
+		this.user                 = new TextBox();
+		this.passLabel            = new Label();
+		this.password             = new TextBox();
+		this.identityLabel        = new Label();
+		this.identityFile         = new TextBox();
+		this.identityFileOpen     = new Button();
+		this.profileSave          = new Button();
+		this.profileRemove        = new Button();
 		//SSH key
-		this.sshKeyLabel = new Label();
-		this.privateKeyCopy = new Button();
-		this.privateKeyOpen = new Button();
-		this.publicKeyCopy = new Button();
-		this.publicKeyOpen = new Button();
-		this.keygen = new Button();
+		this.sshKeyLabel          = new Label();
+		this.privateKeyCopy       = new Button();
+		this.privateKeyOpen       = new Button();
+		this.publicKeyCopy        = new Button();
+		this.publicKeyOpen        = new Button();
+		this.keygen               = new Button();
 		//Priority
-		this.usagePriorityLabel = new Label();
+		this.usagePriorityLabel   = new Label();
 
 		//Client
 		this.Name = "Setting";
@@ -148,6 +151,27 @@ partial class SettingForm : Form {
 		this.password.Location = new Point(curW + this.passLabel.Size.Width, curH); ;
 
 		curH += this.password.Size.Height + margen;
+
+		this.identityLabel.Text = "Identity File";
+		this.identityLabel.Font = new Font("arial", 12f);
+		this.identityLabel.Size = new Size(100, 30);
+		this.identityLabel.Location = new Point(curW, curH);
+
+		this.identityFile.Font = new Font("arial", 12f);
+		this.identityFile.Size = new Size(350, 30);
+		this.identityFile.Location = new Point(curW + this.identityLabel.Size.Width, curH);
+
+		this.identityFileOpen.Text = "...";
+		this.identityFileOpen.Font = new Font("arial", 12f);
+		this.identityFileOpen.Size = new Size(50, 27);
+		this.identityFileOpen.Location = new Point(
+			this.identityFile.Location.X + this.identityFile.Size.Width,
+			curH
+		);
+		this.identityFileOpen.Click += new EventHandler(identityFileOpenClick);
+
+		curH += this.identityFileOpen.Size.Height + margen;
+
 		
 		this.profileSave.Text = "Save";
 		this.profileSave.Font = new Font("arial", 12f);
@@ -226,6 +250,9 @@ partial class SettingForm : Form {
 		this.Controls.Add(this.user);
 		this.Controls.Add(this.passLabel);
 		this.Controls.Add(this.password);
+		this.Controls.Add(this.identityLabel);
+		this.Controls.Add(this.identityFile);
+		this.Controls.Add(this.identityFileOpen);
 		this.Controls.Add(this.profileSave);
 		this.Controls.Add(this.profileRemove);
 		
