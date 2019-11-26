@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 partial class AboutForm : Form {
@@ -9,7 +9,8 @@ partial class AboutForm : Form {
 	//Packeage Lisences
 	private ListBox licenses;
 	private TextBox packageInfo;
-	private package[] packagesData;
+	private Dictionary<string, package> packagesData;
+
 	private struct package {
 		public string name;
 		public string version;
@@ -23,30 +24,76 @@ partial class AboutForm : Form {
 	}
 
 	private void makePackagesData() {
-		this.packagesData = new package[4];
+		this.packagesData = new Dictionary<string, package>();
+		package packageData = new package();
 		/*SSH.NET*/
-		this.packagesData[0].name      = "SSH.NET";
-		this.packagesData[0].version   = "2017.0.0";
-		this.packagesData[0].license   = "MIT";
-		this.packagesData[0].copyright = "Renchi";
+		packageData.name      = "SSH.NET";
+		packageData.version   = "2017.0.0";
+		packageData.license   = "MIT";
+		packageData.copyright = "Renchi";
+		packageData.source    = "";
+		this.packagesData.Add(packageData.name, packageData);
 		/*LivVLCSharp*/
-		this.packagesData[1].name      = "LivVLCSharp";
-		this.packagesData[1].version   = "3.3.1";
-		this.packagesData[1].license   = "LGPL-2.1-or-later";
-		this.packagesData[1].copyright = "Copyright (C) 1991, 1999 Free Software Foundation, Inc.";
-		this.packagesData[1].source    = "https://code.videolan.org/videolan/LibVLCSharp";
+		packageData.name      = "LivVLCSharp";
+		packageData.version   = "3.3.1";
+		packageData.license   = "LGPL-2.1-or-later";
+		packageData.copyright = "Copyright (C) 1991, 1999 Free Software Foundation, Inc.";
+		packageData.source    = "https://code.videolan.org/videolan/LibVLCSharp";
+		this.packagesData.Add(packageData.name, packageData);
 		/*LivVLCSharp.WinForms*/
-		this.packagesData[2].name      = "LivVLCSharp.WinForms";
-		this.packagesData[2].version   = "3.3.1";
-		this.packagesData[2].license   = "LGPL-2.1-or-later";
-		this.packagesData[2].copyright = "Copyright (C) 1991, 1999 Free Software Foundation, Inc.";
-		this.packagesData[2].source    = "https://code.videolan.org/videolan/LibVLCSharp";
+		packageData.name      = "LivVLCSharp.WinForms";
+		packageData.version   = "3.3.1";
+		packageData.license   = "LGPL-2.1-or-later";
+		packageData.copyright = "Copyright (C) 1991, 1999 Free Software Foundation, Inc.";
+		packageData.source    = "https://code.videolan.org/videolan/LibVLCSharp";
+		this.packagesData.Add(packageData.name, packageData);
 		/*VideoLAN.LibVLC.Windows*/
-		this.packagesData[3].name      = "VideoLAN.LibVLC.Windows";
-		this.packagesData[3].version   = "3.0.8.1";
-		this.packagesData[3].license   = "LGP+-2.1-or-later";
-		this.packagesData[3].copyright = "Copyright (C) 1991, 1999 Free Software Foundation, Inc.";
-		this.packagesData[3].source    = "https://code.videolan.org/videolan/libvlc-nuget";
+		packageData.name      = "VideoLAN.LibVLC.Windows";
+		packageData.version   = "3.0.8.1";
+		packageData.license   = "LGPL-2.1-or-later";
+		packageData.copyright = "Copyright (C) 1991, 1999 Free Software Foundation, Inc.";
+		packageData.source    = "https://code.videolan.org/videolan/libvlc-nuget";
+		this.packagesData.Add(packageData.name, packageData);
+	}
+
+	private void itemListChange(object sender, EventArgs e) {
+		ListBox itemList = sender as ListBox;
+		switch (itemList.SelectedItem) {
+			case ("About"):
+				//ORE
+				this.ore.Visible         = true;
+				this.version.Visible     = true;
+				this.copyright.Visible   = true;
+				this.license.Visible     = true;
+				//Package Licenses;
+				this.licenses.Visible    = false;
+				this.packageInfo.Visible = false;
+				break;
+			case ("Licenses"):
+				//ORE
+				this.ore.Visible         = false;
+				this.version.Visible     = false;
+				this.copyright.Visible   = false;
+				this.license.Visible     = false;
+				//Package Licenses;
+				this.licenses.Visible    = true;
+				this.packageInfo.Visible = true;
+				break;
+		}
+	}
+
+	private void licensesChange(object sender, EventArgs e) {
+		ListBox licenses = sender as ListBox;
+		string key = (string)licenses.SelectedItem;
+		this.packageInfo.Text = (
+			$"{this.packagesData[key].name}\r\n" +
+			$"Version : {this.packagesData[key].version}\r\n" +
+			$"License : {this.packagesData[key].license}\r\n" +
+			$"{this.packagesData[key].copyright}"
+		);
+		if (this.packagesData[key].source != "") {
+			this.packageInfo.Text += $"\r\nSource\r\n{this.packagesData[key].source}";
+		}
 	}
 }
  
