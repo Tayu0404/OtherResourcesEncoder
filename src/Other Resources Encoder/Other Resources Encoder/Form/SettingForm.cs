@@ -117,6 +117,12 @@ partial class SettingForm : Form {
 		}
 	}
 
+	private void portKeyPress(object sender, KeyPressEventArgs e) {
+		if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b') {
+			e.Handled = true;
+		}
+	}
+
 	private void identityFileOpenClick(object sender, EventArgs e) {
 		OpenFileDialog openFile = new OpenFileDialog() {
 			Multiselect = false,

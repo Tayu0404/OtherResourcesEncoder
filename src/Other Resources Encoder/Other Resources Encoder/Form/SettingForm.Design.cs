@@ -125,6 +125,7 @@ partial class SettingForm : Form {
 		this.port.Font = new Font("arial", 12f);
 		this.port.Size = new Size(400, 30);
 		this.port.Location = new Point(curW + this.portLabel.Size.Width, curH);
+		this.port.KeyPress += new KeyPressEventHandler(portKeyPress);
 
 		curH += this.port.Size.Height + margen;
 
