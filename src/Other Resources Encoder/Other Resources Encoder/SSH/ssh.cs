@@ -13,27 +13,27 @@ partial class SSH {
 	}
 
 	public string Host {
-		set { value = host; }
+		set { host = value; }
 		get { return host; }
 	}
 	public string HostName {
-		set { value = hostname; }
+		set { hostname = value; }
 		get { return hostname; }
 	}
 	public string Port {
-		set { value = port; }
+		set { port = value; }
 		get { return port; }
 	}
 	public string User {
-		set { value = user; }
+		set { user = value; }
 		get { return user; }
 	}
 	public string Password {
-		set { value = password; }
+		set { password = value; }
 		get { return password; }
 	}
 	public string Identityfile {
-		set { value = identityfile; }
+		set { identityfile = value; }
 		get { return identityfile; }
 	}
 }

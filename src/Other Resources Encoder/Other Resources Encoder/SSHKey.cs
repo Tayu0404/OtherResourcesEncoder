@@ -4,7 +4,7 @@ using System.IO;
 class SSHKey {
 	public string PrivateKeyFilePath {
 		get {
-			FolderPath folderPath = new FolderPath();
+			Path folderPath = new Path();
 			string sshKeyFolderPath = folderPath.SSHKeyFolderPath;
 			var filePath = sshKeyFolderPath + "id_rsa";
 			return filePath;
@@ -13,7 +13,7 @@ class SSHKey {
 
 	public string PublicKeyFilePath {
 		get {
-			FolderPath folderPath = new FolderPath();
+			Path folderPath = new Path();
 			string sshKeyFolderPath = folderPath.SSHKeyFolderPath;
 			var filePath = sshKeyFolderPath + "id_rsa.pub";
 			return filePath;

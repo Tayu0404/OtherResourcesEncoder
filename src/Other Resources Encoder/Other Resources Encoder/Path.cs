@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-class FolderPath {
+class Path {
 
 	public void FolderPathCheck (){
 		if (!Directory.Exists(this.OREFolderPath)) {
@@ -15,6 +15,9 @@ class FolderPath {
 		}
 		if (!Directory.Exists(this.ResourceMachinesFolderPath)) {
 			Directory.CreateDirectory(this.ResourceMachinesFolderPath);
+		}
+		if (!Directory.Exists(this.ConfigFolderPath)) {
+			Directory.CreateDirectory(this.ConfigFolderPath);
 		}
 	}
 
@@ -59,6 +62,28 @@ class FolderPath {
 				"ResourceMachines\\"
 			);
 			return resourceMachinesFolderPath;
+		}
+	}
+
+	public string ConfigFolderPath {
+		get {
+			string configFolderPath;
+			configFolderPath = (
+				this.OREFolderPath +
+				"Config\\"
+			);
+			return configFolderPath;
+		}
+	}
+
+	public string SSHConfigFilePath {
+		get {
+			string sshConfigFilePath;
+			sshConfigFilePath = (
+				this.ConfigFolderPath +
+				"sshConfig.xml"
+			);
+			return sshConfigFilePath;	
 		}
 	}
 }

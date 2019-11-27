@@ -8,7 +8,7 @@ namespace Other_Resources_Encoder {
 	static class Program {
 		[STAThread]
 		static void Main() {
-			FolderPath folderPath = new FolderPath();
+			Path folderPath = new Path();
 			folderPath.FolderPathCheck();
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
