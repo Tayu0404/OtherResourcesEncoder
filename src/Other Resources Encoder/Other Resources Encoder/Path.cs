@@ -13,9 +13,6 @@ class Path {
 		if (!Directory.Exists(this.EncodeProfileFolderPath)) {
 			Directory.CreateDirectory(this.EncodeProfileFolderPath);
 		}
-		if (!Directory.Exists(this.ResourceMachinesFolderPath)) {
-			Directory.CreateDirectory(this.ResourceMachinesFolderPath);
-		}
 		if (!Directory.Exists(this.ConfigFolderPath)) {
 			Directory.CreateDirectory(this.ConfigFolderPath);
 		}
@@ -51,17 +48,6 @@ class Path {
 				"EncodeProfiles\\"
 			);
 			return encodeProfileFolderPath;
-		}
-	}
-
-	public string ResourceMachinesFolderPath {
-		get {
-			string resourceMachinesFolderPath;
-			resourceMachinesFolderPath = (
-				this.OREFolderPath +
-				"ResourceMachines\\"
-			);
-			return resourceMachinesFolderPath;
 		}
 	}
 

@@ -13,8 +13,13 @@ public class SSHConfig {
 		public string Identityfile;
 	}
 
+
 	public void Save(Config config) {
 		var sshConfigs = this.Load();
+
+		if (sshConfigs.ContainsKey(config.HostName)) {
+			sshConfigs.Remove(config.HostName);
+		}
 
 		sshConfigs.Add(config.HostName, config);
 
@@ -37,16 +42,22 @@ public class SSHConfig {
 	public Dictionary<string, Config> Load () {
 		Dictionary<string, Config> sshConfigs = new Dictionary<string, Config>();
 		Config sshConfig;
-		
-		var xdoc = XDocument.Load(new Path().SSHConfigFilePath);
+		XDocument xdoc;
+		try {
+			xdoc = XDocument.Load(new Path().SSHConfigFilePath);
+		}
+		catch {
+			return sshConfigs;
+		}
+
 		var elements = xdoc.Root.Elements();
 		foreach (var econfig in elements) {
 			sshConfig = new Config {
-				HostName = econfig.Element("hostname").Value,
-				Host = econfig.Element("host").Value,
-				Port = econfig.Element("port").Value,
-				User = econfig.Element("user").Value,
-				Password = econfig.Element("password").Value,
+				HostName     = econfig.Element("hostname").Value,
+				Host         = econfig.Element("host").Value,
+				Port         = econfig.Element("port").Value,
+				User         = econfig.Element("user").Value,
+				Password     = econfig.Element("password").Value,
 				Identityfile = econfig.Element("identity").Value,
 			};
 			sshConfigs.Add(sshConfig.HostName, sshConfig);
