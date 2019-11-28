@@ -141,6 +141,14 @@ partial class SettingForm : Form {
 	private void machineProfileChange(object sender, EventArgs e) {
 		ComboBox machineProfile = sender as ComboBox; 
 		string key = machineProfile.SelectedItem.ToString();
+		/*Initialization*/
+		this.rmError.Text           = string.Empty;
+		this.profileLabel.ForeColor = Color.Black;
+		this.hostLabel.ForeColor    = Color.Black;
+		this.portLabel.ForeColor    = Color.Black;
+		this.userLabel.ForeColor    = Color.Black;
+		this.passLabel.ForeColor    = Color.Black;
+
 		if (key == "New Profile") {
 			this.profileName.Text  = string.Empty;
 			this.host.Text         = string.Empty;
@@ -164,6 +172,14 @@ partial class SettingForm : Form {
 
 	private void profileSaveClick(object sender, EventArgs e) {
 		bool errorFlag = false;
+		/*Initialization*/
+		this.rmError.Text           = string.Empty;
+		this.profileLabel.ForeColor = Color.Black;
+		this.hostLabel.ForeColor    = Color.Black;
+		this.portLabel.ForeColor    = Color.Black;
+		this.userLabel.ForeColor    = Color.Black;
+		this.passLabel.ForeColor    = Color.Black;
+
 		if (this.profileName.Text == string.Empty) {
 			this.profileLabel.ForeColor = Color.Red;
 			errorFlag = true;
@@ -265,3 +281,4 @@ partial class SettingForm : Form {
 		Process.Start("EXPLORER.EXE", "/e,/select," + sshKey.PublicKeyFilePath);
 	}
 }
+ 
