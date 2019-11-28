@@ -149,6 +149,7 @@ partial class SettingForm : Form {
 			this.port.Text         = string.Empty;
 			this.password.Text     = string.Empty;
 			this.identityFile.Text = string.Empty;
+			this.profileRemove.Enabled = false;
 			return;
 		}
 		var configs = new SSHConfig().Load();
@@ -158,6 +159,7 @@ partial class SettingForm : Form {
 		this.user.Text         = configs[key].User;
 		this.password.Text     = configs[key].Password;
 		this.identityFile.Text = configs[key].Identityfile;
+		this.profileRemove.Enabled = true;
 	}
 
 	private void profileSaveClick(object sender, EventArgs e) {
@@ -198,6 +200,15 @@ partial class SettingForm : Form {
 		sshConfig.Save(config);
 		this.loadSSHConfig();
 		this.machineProfile.SelectedItem = config.HostName;
+	}
+
+	private void profileRemoveClick(object sender, EventArgs e) {
+		SSHConfig sshConfig = new SSHConfig();
+		var key = this.profileName.Text;
+		sshConfig.Remove(key);
+		this.loadSSHConfig();
+		this.machineProfile.Items.Remove(key);
+		this.machineProfile.SelectedIndex = 0;
 	}
 
 	private void portKeyPress(object sender, KeyPressEventArgs e) {

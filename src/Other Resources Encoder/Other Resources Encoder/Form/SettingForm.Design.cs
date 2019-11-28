@@ -83,12 +83,12 @@ partial class SettingForm : Form {
 		curH += this.resourceMachineLabel.Size.Height + margen;
 
 		this.machineProfile.Items.Add("New Profile");
-		this.machineProfile.SelectedIndex = 0;
 		this.machineProfile.DropDownStyle = ComboBoxStyle.DropDownList;
 		this.machineProfile.Font = new Font("arial", 12f);
 		this.machineProfile.Size = new Size(500, 30);
 		this.machineProfile.Location = new Point(curW, curH);
 		this.machineProfile.SelectedIndexChanged += new EventHandler(machineProfileChange);
+		this.machineProfile.SelectedIndex = 0;
 
 		curH +=this.machineProfile.Size.Height + margen;
 
@@ -190,8 +190,9 @@ partial class SettingForm : Form {
 			this.profileSave.Location.X - this.profileRemove.Size.Width - margen,
 			curH
 		);
+		this.profileRemove.Click += new EventHandler(profileRemoveClick);
 
-		curH += this.profileRemove.Size.Height + margen;
+		curH += this.profileRemove.Size.Height;
 
 		this.rmError.ForeColor = Color.Red;
 		this.rmError.Font = new Font("arial", 12f);
