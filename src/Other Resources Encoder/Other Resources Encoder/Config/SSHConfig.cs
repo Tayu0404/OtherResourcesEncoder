@@ -7,7 +7,7 @@ public class SSHConfig {
 	public struct Config {
 		public string HostName;
 		public string Host;
-		public int    Port;
+		public string Port;
 		public string User;
 		public string Password;
 		public string Identityfile;
@@ -55,7 +55,7 @@ public class SSHConfig {
 			sshConfig = new Config {
 				HostName     = econfig.Element("hostname").Value,
 				Host         = econfig.Element("host").Value,
-				Port         = int.Parse(econfig.Element("port").Value),
+				Port         = econfig.Element("port").Value,
 				User         = econfig.Element("user").Value,
 				Password     = econfig.Element("password").Value,
 				Identityfile = econfig.Element("identity").Value,

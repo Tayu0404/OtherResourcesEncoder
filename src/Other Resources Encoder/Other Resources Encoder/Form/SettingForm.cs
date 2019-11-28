@@ -7,7 +7,7 @@ partial class SettingForm : Form {
 	private ListBox settingList;
 	private Button okButton;
 	//Remote Machine
-	private Label resourceMachineLabel, profileLabel, hostLabel, portLabel, userLabel, passLabel, identityLabel;
+	private Label resourceMachineLabel, profileLabel, hostLabel, portLabel, userLabel, passLabel, identityLabel, rmError;
 	private ComboBox machineProfile;
 	private TextBox profileName, host, port, user, password, identityFile;
 	private Button profileSave, profileRemove, identityFileOpen;
@@ -44,6 +44,7 @@ partial class SettingForm : Form {
 				this.identityFileOpen.Visible     = true;
 				this.profileSave.Visible          = true;
 				this.profileRemove.Visible        = true;
+				this.rmError.Visible              = true;
 				//SSH key
 				this.sshKeyLabel.Visible          = false;
 				this.privateKeyCopy.Visible       = false;
@@ -74,6 +75,7 @@ partial class SettingForm : Form {
 				this.identityFileOpen.Visible     = false;
 				this.profileSave.Visible          = false;
 				this.profileRemove.Visible        = false;
+				this.rmError.Visible              = false;
 				//SSH key
 				this.sshKeyLabel.Visible          = false;
 				this.privateKeyCopy.Visible       = false;
@@ -104,6 +106,7 @@ partial class SettingForm : Form {
 				this.identityFileOpen.Visible     = false;
 				this.profileSave.Visible          = false;
 				this.profileRemove.Visible        = false;
+				this.rmError.Visible              = false;
 				//SSH key
 				this.sshKeyLabel.Visible          = true;
 				this.privateKeyCopy.Visible       = true;
@@ -115,6 +118,86 @@ partial class SettingForm : Form {
 				this.usagePriorityLabel.Visible   = false;
 				break;
 		}
+	}
+	
+	public SettingForm() {
+		InitializeComponent();
+		Load += settingFormLoad;
+	}
+
+	private void settingFormLoad (object sender, EventArgs e) {
+		this.loadSSHConfig();
+	}
+
+	private void loadSSHConfig() {
+		SSHConfig sshConfig = new SSHConfig();
+		var configs = sshConfig.Load();
+		foreach(string key in configs.Keys) {
+			this.machineProfile.Items.Remove(key);
+			this.machineProfile.Items.Add(key);
+		}
+	}
+
+	private void machineProfileChange(object sender, EventArgs e) {
+		ComboBox machineProfile = sender as ComboBox; 
+		string key = machineProfile.SelectedItem.ToString();
+		if (key == "New Profile") {
+			this.profileName.Text  = string.Empty;
+			this.host.Text         = string.Empty;
+			this.port.Text         = string.Empty;
+			this.user.Text         = string.Empty;
+			this.port.Text         = string.Empty;
+			this.password.Text     = string.Empty;
+			this.identityFile.Text = string.Empty;
+			return;
+		}
+		var configs = new SSHConfig().Load();
+		this.profileName.Text  = configs[key].HostName;
+		this.host.Text         = configs[key].Host;
+		this.port.Text         = configs[key].Port;
+		this.user.Text         = configs[key].User;
+		this.password.Text     = configs[key].Password;
+		this.identityFile.Text = configs[key].Identityfile;
+	}
+
+	private void profileSaveClick(object sender, EventArgs e) {
+		bool errorFlag = false;
+		if (this.profileName.Text == string.Empty) {
+			this.profileLabel.ForeColor = Color.Red;
+			errorFlag = true;
+		}
+		if (this.host.Text == string.Empty) {
+			this.hostLabel.ForeColor = Color.Red;
+			errorFlag = true;
+		}
+		if (this.port.Text == string.Empty) {
+			this.portLabel.ForeColor = Color.Red;
+			errorFlag = true;
+		}
+		if (this.user.Text == string.Empty) {
+			this.userLabel.ForeColor = Color.Red;
+			errorFlag = true;
+		}
+		if (this.password.Text == string.Empty) { 
+			this.passLabel.ForeColor = Color.Red;
+			errorFlag = true;
+		}
+		if (errorFlag) {
+			this.rmError.Text = "Please Enter";
+		}
+
+		SSHConfig sshConfig = new SSHConfig();
+		var config = new SSHConfig.Config {
+			HostName = this.profileName.Text,
+			Host = this.host.Text,
+			Port = this.port.Text,
+			User = this.user.Text,
+			Password = this.password.Text,
+			Identityfile = this.identityFile.Text,
+		};
+		sshConfig.Save(config);
+		this.loadSSHConfig();
+		this.machineProfile.SelectedItem = config.HostName;
 	}
 
 	private void portKeyPress(object sender, KeyPressEventArgs e) {
@@ -168,9 +251,5 @@ partial class SettingForm : Form {
 	private void publicKeyOpenClick(object sender, EventArgs e) {
 		SSHKey sshKey = new SSHKey();
 		Process.Start("EXPLORER.EXE", "/e,/select," + sshKey.PublicKeyFilePath);
-	}
-
-	public SettingForm() {
-		InitializeComponent();
 	}
 }

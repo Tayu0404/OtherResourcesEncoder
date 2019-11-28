@@ -29,6 +29,7 @@ partial class SettingForm : Form {
 		this.identityFileOpen     = new Button();
 		this.profileSave          = new Button();
 		this.profileRemove        = new Button();
+		this.rmError              = new Label();
 		//SSH key
 		this.sshKeyLabel          = new Label();
 		this.privateKeyCopy       = new Button();
@@ -81,14 +82,13 @@ partial class SettingForm : Form {
 
 		curH += this.resourceMachineLabel.Size.Height + margen;
 
-		this.machineProfile.Items.AddRange(new object[] {
-			"New Profile"
-		});
+		this.machineProfile.Items.Add("New Profile");
 		this.machineProfile.SelectedIndex = 0;
 		this.machineProfile.DropDownStyle = ComboBoxStyle.DropDownList;
 		this.machineProfile.Font = new Font("arial", 12f);
 		this.machineProfile.Size = new Size(500, 30);
 		this.machineProfile.Location = new Point(curW, curH);
+		this.machineProfile.SelectedIndexChanged += new EventHandler(machineProfileChange);
 
 		curH +=this.machineProfile.Size.Height + margen;
 
@@ -181,6 +181,7 @@ partial class SettingForm : Form {
 			this.password.Location.X + this.password.Size.Width - this.profileSave.Size.Width,
 			curH
 		);
+		this.profileSave.Click += new EventHandler(profileSaveClick);
 
 		this.profileRemove.Text = "Remove";
 		this.profileRemove.Font = new Font("arial", 12f);
@@ -189,6 +190,16 @@ partial class SettingForm : Form {
 			this.profileSave.Location.X - this.profileRemove.Size.Width - margen,
 			curH
 		);
+
+		curH += this.profileRemove.Size.Height + margen;
+
+		this.rmError.ForeColor = Color.Red;
+		this.rmError.Font = new Font("arial", 12f);
+		this.rmError.Size = new Size(
+			this.ClientSize.Width - this.settingList.Size.Width - margen * 3,
+			100
+		);
+		this.rmError.Location = new Point(curW, curH);
 
 		//SSH Key
 		curH = margen;
@@ -256,6 +267,7 @@ partial class SettingForm : Form {
 		this.Controls.Add(this.identityFileOpen);
 		this.Controls.Add(this.profileSave);
 		this.Controls.Add(this.profileRemove);
+		this.Controls.Add(this.rmError);
 		
 		//SSH key
 		this.Controls.Add(this.sshKeyLabel);

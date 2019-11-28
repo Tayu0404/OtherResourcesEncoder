@@ -96,5 +96,3 @@ partial class AboutForm : Form {
 		}
 	}
 }
- 
- 
