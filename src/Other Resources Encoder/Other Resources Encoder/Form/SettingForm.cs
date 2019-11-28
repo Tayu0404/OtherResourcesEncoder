@@ -186,6 +186,7 @@ partial class SettingForm : Form {
 		}
 		if (errorFlag) {
 			this.rmError.Text = "Please Enter";
+			return;
 		}
 
 		SSHConfig sshConfig = new SSHConfig();
