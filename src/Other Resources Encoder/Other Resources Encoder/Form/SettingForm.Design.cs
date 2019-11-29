@@ -148,6 +148,7 @@ partial class SettingForm : Form {
 		this.passLabel.Location = new Point(curW, curH);
 
 		this.password.Font = new Font("arial", 12f);
+		this.password.UseSystemPasswordChar = true;
 		this.password.Size = new Size(400, 30);
 		this.password.Location = new Point(curW + this.passLabel.Size.Width, curH); ;
 
