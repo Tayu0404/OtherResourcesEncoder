@@ -7,6 +7,7 @@ partial class SettingForm : Form {
 
 		const int margen = 15;
 		int curW, curH;
+		string fontFamilyName = SystemFonts.DefaultFont.FontFamily.Name;
 
 		//Setting List
 		this.settingList          = new ListBox();
@@ -58,14 +59,14 @@ partial class SettingForm : Form {
 			"Usage Priority",
 			"SSH Key",
 		});
-		this.settingList.Font = new Font("arial", 14f);
+		this.settingList.Font = new Font(fontFamilyName, 15f);
 		this.settingList.Size = new Size(250, this.ClientSize.Height - margen * 2);
 		this.settingList.Location = new Point(curW, curH);
 		this.settingList.SelectedIndexChanged += new EventHandler(settingListChange);
 
 		this.okButton.Text = "Accept";
 		this.okButton.DialogResult = DialogResult.OK;
-		this.okButton.Font = new Font("arial", 12f);
+		this.okButton.Font = new Font(fontFamilyName, 14f);
 		this.okButton.Size = new Size(150, 30);
 		this.okButton.Location = new Point(
 			this.ClientSize.Width - margen - this.okButton.Size.Width,
@@ -76,7 +77,7 @@ partial class SettingForm : Form {
 
 		//Remote Machines
 		this.resourceMachineLabel.Text = "Resource Machines";
-		this.resourceMachineLabel.Font = new Font("arial", 15f);
+		this.resourceMachineLabel.Font = new Font(fontFamilyName, 15f);
 		this.resourceMachineLabel.Size = new Size(250, 30);
 		this.resourceMachineLabel.Location = new Point(curW, curH);
 
@@ -84,7 +85,7 @@ partial class SettingForm : Form {
 
 		this.machineProfile.Items.Add("New Profile");
 		this.machineProfile.DropDownStyle = ComboBoxStyle.DropDownList;
-		this.machineProfile.Font = new Font("arial", 12f);
+		this.machineProfile.Font = new Font(fontFamilyName, 14f);
 		this.machineProfile.Size = new Size(500, 30);
 		this.machineProfile.Location = new Point(curW, curH);
 		this.machineProfile.SelectedIndexChanged += new EventHandler(machineProfileChange);
@@ -94,36 +95,36 @@ partial class SettingForm : Form {
 
 		this.profileLabel.Text = "Profile Name";
 		this.profileLabel.TextAlign = ContentAlignment.MiddleLeft;
-		this.profileLabel.Font = new Font("arial", 12f);
-		this.profileLabel.Size = new Size(100, 30);
+		this.profileLabel.Font = new Font(fontFamilyName, 14f);
+		this.profileLabel.Size = new Size(110, 30);
 		this.profileLabel.Location = new Point(curW, curH);
 		
-		this.profileName.Font = new Font("arial", 12f);
-		this.profileName.Size = new Size(400, 30);
+		this.profileName.Font = new Font(fontFamilyName, 14f);
+		this.profileName.Size = new Size(390, 30);
 		this.profileName.Location = new Point(curW + this.profileLabel.Size.Width, curH);
 
 		curH += this.profileName.Size.Height + margen;
 
 		this.hostLabel.Text = "Host";
 		this.hostLabel.TextAlign = ContentAlignment.MiddleLeft;
-		this.hostLabel.Font = new Font("arial", 12f);
-		this.hostLabel.Size = new Size(100, 30);
+		this.hostLabel.Font = new Font(fontFamilyName, 14f);
+		this.hostLabel.Size = new Size(110, 30);
 		this.hostLabel.Location = new Point(curW, curH);
 
-		this.host.Font = new Font("arial", 12f);
-		this.host.Size = new Size(400, 30);
+		this.host.Font = new Font(fontFamilyName, 14f);
+		this.host.Size = new Size(390, 30);
 		this.host.Location = new Point(curW + hostLabel.Size.Width, curH);
 
 		curH += this.host.Size.Height + margen;
 
 		this.portLabel.Text = "Port";
 		this.portLabel.TextAlign = ContentAlignment.MiddleLeft;
-		this.portLabel.Font = new Font("arial", 12f);
-		this.portLabel.Size = new Size(100, 30);
+		this.portLabel.Font = new Font(fontFamilyName, 14f);
+		this.portLabel.Size = new Size(110, 30);
 		this.portLabel.Location = new Point(curW, curH);
 
-		this.port.Font = new Font("arial", 12f);
-		this.port.Size = new Size(400, 30);
+		this.port.Font = new Font(fontFamilyName, 14f);
+		this.port.Size = new Size(390, 30);
 		this.port.Location = new Point(curW + this.portLabel.Size.Width, curH);
 		this.port.KeyPress += new KeyPressEventHandler(portKeyPress);
 
@@ -131,40 +132,40 @@ partial class SettingForm : Form {
 
 		this.userLabel.Text = "User";
 		this.userLabel.TextAlign = ContentAlignment.MiddleLeft;
-		this.userLabel.Font = new Font("arial", 12f);
-		this.userLabel.Size = new Size(100, 30);
+		this.userLabel.Font = new Font(fontFamilyName, 14f);
+		this.userLabel.Size = new Size(110, 30);
 		this.userLabel.Location = new Point(curW, curH);
 
-		this.user.Font = new Font("arial", 12f);
-		this.user.Size = new Size(400, 30);
+		this.user.Font = new Font(fontFamilyName, 14f);
+		this.user.Size = new Size(390, 30);
 		this.user.Location = new Point(curW + this.userLabel.Size.Width, curH);
 
 		curH += this.user.Size.Height + margen;
 
 		this.passLabel.Text = "Password";
 		this.passLabel.TextAlign = ContentAlignment.MiddleLeft;
-		this.passLabel.Font = new Font("arial", 12f);
-		this.passLabel.Size = new Size(100, 30);
+		this.passLabel.Font = new Font(fontFamilyName, 14f);
+		this.passLabel.Size = new Size(110, 30);
 		this.passLabel.Location = new Point(curW, curH);
 
-		this.password.Font = new Font("arial", 12f);
+		this.password.Font = new Font(fontFamilyName, 14f);
 		this.password.UseSystemPasswordChar = true;
-		this.password.Size = new Size(400, 30);
+		this.password.Size = new Size(390, 30);
 		this.password.Location = new Point(curW + this.passLabel.Size.Width, curH); ;
 
 		curH += this.password.Size.Height + margen;
 
-		this.identityLabel.Text = "Identity File";
-		this.identityLabel.Font = new Font("arial", 12f);
-		this.identityLabel.Size = new Size(100, 30);
+		this.identityLabel.Text = "Private Key";
+		this.identityLabel.Font = new Font(fontFamilyName, 14f);
+		this.identityLabel.Size = new Size(110, 30);
 		this.identityLabel.Location = new Point(curW, curH);
 
-		this.identityFile.Font = new Font("arial", 12f);
-		this.identityFile.Size = new Size(350, 30);
+		this.identityFile.Font = new Font(fontFamilyName, 14f);
+		this.identityFile.Size = new Size(340, 30);
 		this.identityFile.Location = new Point(curW + this.identityLabel.Size.Width, curH);
 
 		this.identityFileOpen.Text = "...";
-		this.identityFileOpen.Font = new Font("arial", 12f);
+		this.identityFileOpen.Font = new Font(fontFamilyName, 14f);
 		this.identityFileOpen.Size = new Size(50, 27);
 		this.identityFileOpen.Location = new Point(
 			this.identityFile.Location.X + this.identityFile.Size.Width,
@@ -176,7 +177,7 @@ partial class SettingForm : Form {
 
 		
 		this.profileSave.Text = "Save";
-		this.profileSave.Font = new Font("arial", 12f);
+		this.profileSave.Font = new Font(fontFamilyName, 14f);
 		this.profileSave.Size = new Size(100, 30);
 		this.profileSave.Location = new Point(
 			this.password.Location.X + this.password.Size.Width - this.profileSave.Size.Width,
@@ -185,7 +186,7 @@ partial class SettingForm : Form {
 		this.profileSave.Click += new EventHandler(profileSaveClick);
 
 		this.profileRemove.Text = "Remove";
-		this.profileRemove.Font = new Font("arial", 12f);
+		this.profileRemove.Font = new Font(fontFamilyName, 14f);
 		this.profileRemove.Size = new Size(100, 30);
 		this.profileRemove.Location = new Point(
 			this.profileSave.Location.X - this.profileRemove.Size.Width - margen,
@@ -196,7 +197,7 @@ partial class SettingForm : Form {
 		curH += this.profileRemove.Size.Height;
 
 		this.rmError.ForeColor = Color.Red;
-		this.rmError.Font = new Font("arial", 12f);
+		this.rmError.Font = new Font(fontFamilyName, 14f);
 		this.rmError.Size = new Size(
 			this.ClientSize.Width - this.settingList.Size.Width - margen * 3,
 			100
@@ -208,19 +209,19 @@ partial class SettingForm : Form {
 
 		this.sshKeyLabel.Text = "SSH Key";
 		this.sshKeyLabel.Size = new Size(100, 30);
-		this.sshKeyLabel.Font = new Font("arial", 15f);
+		this.sshKeyLabel.Font = new Font(fontFamilyName, 15f);
 		this.sshKeyLabel.Location = new Point(curW, curH);
 
 		curH += this.sshKeyLabel.Size.Height + margen;
 
 		this.privateKeyCopy.Text = "Private key Copy";
-		this.privateKeyCopy.Font = new Font("arial", 12f);
+		this.privateKeyCopy.Font = new Font(fontFamilyName, 14f);
 		this.privateKeyCopy.Size = new Size(215, 30);
 		this.privateKeyCopy.Location = new Point(curW, curH);
 		this.privateKeyCopy.Click += new EventHandler(privateKeyCopyClick);
 
 		this.privateKeyOpen.Text = "...";
-		this.privateKeyOpen.Font = new Font("arial", 12f);
+		this.privateKeyOpen.Font = new Font(fontFamilyName, 14f);
 		this.privateKeyOpen.Size = new Size(50, 30);
 		this.privateKeyOpen.Location = new Point(curW + this.privateKeyCopy.Size.Width, curH);
 		this.privateKeyOpen.Click += new EventHandler(privateKeyOpenClick);
@@ -228,13 +229,13 @@ partial class SettingForm : Form {
 		curH += this.privateKeyOpen.Size.Height + margen;
 
 		this.publicKeyCopy.Text = "Public Key Copy";
-		this.publicKeyCopy.Font = new Font("arial", 12f);
+		this.publicKeyCopy.Font = new Font(fontFamilyName, 14f);
 		this.publicKeyCopy.Size = new Size(215, 30);
 		this.publicKeyCopy.Location = new Point(curW, curH);
 		this.publicKeyCopy.Click += new EventHandler(publicKeyCopyClick);
 
 		this.publicKeyOpen.Text = "...";
-		this.publicKeyOpen.Font = new Font("arial", 12f);
+		this.publicKeyOpen.Font = new Font(fontFamilyName, 14f);
 		this.publicKeyOpen.Size = new Size(50, 30);
 		this.publicKeyOpen.Location = new Point(curW + this.privateKeyCopy.Size.Width, curH);
 		this.publicKeyOpen.Click += new EventHandler(publicKeyOpenClick);
@@ -242,7 +243,7 @@ partial class SettingForm : Form {
 		curH += this.publicKeyOpen.Size.Height + margen;
 
 		this.keygen.Text = "Generate";
-		this.keygen.Font = new Font("arial", 12f);
+		this.keygen.Font = new Font(fontFamilyName, 14f);
 		this.keygen.Size = new Size(265, 30);
 		this.keygen.Location = new Point(curW, curH);
 		this.keygen.Click += new EventHandler(keygenClick);

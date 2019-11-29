@@ -8,6 +8,7 @@ partial	class MainForm : Form {
 	private void InitializeComponent() {
 		int margen = 15;
 		int curW, curH;
+		string fontFamilyName = SystemFonts.DefaultFont.FontFamily.Name;
 
 		//Menu Var 
 		this.menuStrip               = new MenuStrip();
@@ -30,6 +31,7 @@ partial	class MainForm : Form {
 		this.outPutVideoLabel        = new Label();
 		this.outPutAudioCheckBox     = new CheckBox();
 		this.outPutAudioLabel        = new Label();
+		this.encode                  = new Button();
 
 		//Video Preview
 		this.livVLC = new LibVLC();
@@ -79,7 +81,7 @@ partial	class MainForm : Form {
 		curH += MainMenuStrip.Size.Height;
 
 		this.encodeLabel.Text = "Encode";
-		this.encodeLabel.Font = new Font("arial", 17f);
+		this.encodeLabel.Font = new Font(fontFamilyName, 17f);
 		this.encodeLabel.Size = new Size(300, 25);
 		this.encodeLabel.Location = new Point(curW, curH);
 
@@ -101,14 +103,14 @@ partial	class MainForm : Form {
 
 		curH += this.encodeLabel.Size.Height + margen;
 
-		this.outPutFileNameLabel.Text = "OutPut File Name :";
-		this.outPutFileNameLabel.Font = new Font("arial", 12f);
+		this.outPutFileNameLabel.Text = "Output File";
+		this.outPutFileNameLabel.Font = new Font(fontFamilyName, 14f);
 		this.outPutFileNameLabel.TextAlign = ContentAlignment.MiddleLeft;
-		this.outPutFileNameLabel.Size = new Size (140, 25);
+		this.outPutFileNameLabel.Size = new Size (100, 25);
 		this.outPutFileNameLabel.Location = new Point(curW, curH);
 
-		this.outPutFileName.Size = new Size(160, 25);
-		this.outPutFileName.Font = new Font("arial", 12f);
+		this.outPutFileName.Size = new Size(200, 25);
+		this.outPutFileName.Font = new Font(fontFamilyName, 14f);
 		this.outPutFileName.Location = new Point(curW + this.outPutFileNameLabel.Size.Width, curH);
 
 		curH += this.outPutFileNameLabel.Size.Height + margen;
@@ -118,12 +120,12 @@ partial	class MainForm : Form {
 		});
 		this.resourceMachine.SelectedIndex = 0;
 		this.resourceMachine.DropDownStyle = ComboBoxStyle.DropDownList;
-		this.resourceMachine.Font = new Font("arial", 12f);
+		this.resourceMachine.Font = new Font(fontFamilyName, 14f);
 		this.resourceMachine.Size = new Size(220, 0);
 		this.resourceMachine.Location = new Point(curW, curH);
 
 		this.resourceMachineSetting.Text = "Setting";
-		this.resourceMachineSetting.Font = new Font("arial", 12f);
+		this.resourceMachineSetting.Font = new Font(fontFamilyName, 14f);
 		this.resourceMachineSetting.Size = new Size(80, this.resourceMachine.Size.Height);
 		this.resourceMachineSetting.Location = new Point(
 			encodeSettingArea - this.resourceMachineSetting.Size.Width + margen,
@@ -138,12 +140,12 @@ partial	class MainForm : Form {
 		});
 		this.encodeProfile.SelectedIndex = 0;
 		this.encodeProfile.DropDownStyle = ComboBoxStyle.DropDownList;
-		this.encodeProfile.Font = new Font("arial", 12f);
+		this.encodeProfile.Font = new Font(fontFamilyName, 14f);
 		this.encodeProfile.Size = new Size(220, 0);
 		this.encodeProfile.Location = new Point(curW, curH);
 
 		this.encodeProfileManegerButton.Text = "Maneger";
-		this.encodeProfileManegerButton.Font = new Font("arial", 12f);
+		this.encodeProfileManegerButton.Font = new Font(fontFamilyName, 14f);
 		this.encodeProfileManegerButton.Size = new Size(80, this.encodeProfile.Size.Height);
 		this.encodeProfileManegerButton.Location = new Point(
 			encodeSettingArea - this.encodeProfileManegerButton.Size.Width + margen,
@@ -153,9 +155,9 @@ partial	class MainForm : Form {
 
 		curH += this.encodeProfileManegerButton.Size.Height + margen;
 		
-		this.encoderLabel.Text = "Encoder :";
-		this.encoderLabel.Font = new Font("arial", 12f);
-		this.encoderLabel.Size = new Size(75, 25);
+		this.encoderLabel.Text = "Encoder";
+		this.encoderLabel.Font = new Font(fontFamilyName, 14f);
+		this.encoderLabel.Size = new Size(80, 25);
 		this.encoderLabel.TextAlign = ContentAlignment.MiddleLeft;
 		this.encoderLabel.Location = new Point(curW, curH);
 
@@ -165,7 +167,7 @@ partial	class MainForm : Form {
 		});
 		this.encoder.SelectedIndex = 0;
 		this.encoder.DropDownStyle = ComboBoxStyle.DropDownList;
-		this.encoder.Font = new Font("arial", 12f);
+		this.encoder.Font = new Font(fontFamilyName, 14f);
 		this.encoder.Size = new Size(encodeSettingArea - this.encoderLabel.Size.Width, 0);
 		this.encoder.Location = new Point(curW + this.encoderLabel.Size.Width, curH);
 
@@ -180,7 +182,7 @@ partial	class MainForm : Form {
 		outputSettingsWidth += outPutVideoCheckBox.Size.Width;
 
 		this.outPutVideoLabel.Text = "Output Video";
-		this.outPutVideoLabel.Font = new Font("arial", 12f);
+		this.outPutVideoLabel.Font = new Font(fontFamilyName, 14f);
 		this.outPutVideoLabel.Size = new Size(130, 25);
 		this.outPutVideoLabel.Location = new Point(outputSettingsWidth, curH);
 
@@ -193,9 +195,19 @@ partial	class MainForm : Form {
 		outputSettingsWidth += this.outPutAudioCheckBox.Size.Width;
 
 		this.outPutAudioLabel.Text = "Output Audio";
-		this.outPutAudioLabel.Font = new Font("arial", 12f);
+		this.outPutAudioLabel.Font = new Font(fontFamilyName, 14f);
 		this.outPutAudioLabel.Size = new Size(120, 30);
 		this.outPutAudioLabel.Location = new Point(outputSettingsWidth, curH);
+
+		curH += this.outPutAudioLabel.Size.Height;
+
+		this.encode.Text = "Encode";
+		this.encode.Font = new Font(fontFamilyName, 14f);
+		this.encode.Size = new Size(150, 30);
+		this.encode.Location = new Point(
+			encodeSettingArea - this.encode.Size.Width + margen,
+			curH
+		);
 
 		this.Controls.Add(this.menuStrip);
 		this.Controls.Add(this.encodeLabel);
@@ -212,5 +224,6 @@ partial	class MainForm : Form {
 		this.Controls.Add(this.outPutVideoLabel);
 		this.Controls.Add(this.outPutAudioCheckBox);
 		this.Controls.Add(this.outPutAudioLabel);
+		this.Controls.Add(this.encode);
 	}
 }
