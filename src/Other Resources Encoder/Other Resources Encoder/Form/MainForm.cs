@@ -65,7 +65,7 @@ partial class MainForm : Form {
 		}
 	}
 
-	private void encodeProfileManegerButtonClick(object sender, EventArgs e){
+	private void encodeProfileManegerButtonClick(object sender, EventArgs e) {
 		EncodeProfileForm encodeProfileForm = new EncodeProfileForm();
 		encodeProfileForm.ShowDialog();
 	}

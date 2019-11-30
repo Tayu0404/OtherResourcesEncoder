@@ -2,38 +2,32 @@
 using Renci.SshNet;
 
 partial class SSH {
-	private string host;
-	private string hostname;
-	private string port;
-	private string user;
-	private string password;
-	private string identityfile;
-	public SSH() {
-		
-	}
+	public SshClient Client(string key) {
+		ConnectionInfo info;
+		var configs  = new SSHConfig().Load();
+		var host     = configs[key].Host;
+		var port     = configs[key].Port;
+		var user     = configs[key].User;
+		var password = configs[key].Password;
+		var identity = configs[key].Identityfile;
 
-	public string Host {
-		set { host = value; }
-		get { return host; }
-	}
-	public string HostName {
-		set { hostname = value; }
-		get { return hostname; }
-	}
-	public string Port {
-		set { port = value; }
-		get { return port; }
-	}
-	public string User {
-		set { user = value; }
-		get { return user; }
-	}
-	public string Password {
-		set { password = value; }
-		get { return password; }
-	}
-	public string Identityfile {
-		set { identityfile = value; }
-		get { return identityfile; }
+		if (identity != string.Empty) {
+			info = new ConnectionInfo(host, int.Parse(port), user,
+				new AuthenticationMethod[] {
+					new PrivateKeyAuthenticationMethod(user, new PrivateKeyFile[] {
+						new PrivateKeyFile(identity)
+					}),
+				}
+			);
+		} else {
+			info = new ConnectionInfo(host, int.Parse(port), user,
+				new AuthenticationMethod[] {
+					new PasswordAuthenticationMethod(user, password)
+				}
+			);
+		}
+		
+		SshClient client = new SshClient(info);
+		return client;
 	}
 }
