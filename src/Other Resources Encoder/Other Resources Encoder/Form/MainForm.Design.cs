@@ -208,6 +208,7 @@ partial	class MainForm : Form {
 			encodeSettingArea - this.encode.Size.Width + margen,
 			curH
 		);
+		this.encode.Click += new EventHandler(encodeClick);
 
 		this.Controls.Add(this.menuStrip);
 		this.Controls.Add(this.encodeLabel);

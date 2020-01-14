@@ -69,4 +69,17 @@ partial class MainForm : Form {
 		EncodeProfileForm encodeProfileForm = new EncodeProfileForm();
 		encodeProfileForm.ShowDialog();
 	}
+	
+	private void encodeClick(object sender, EventArgs e) {
+		var key = this.resourceMachine.SelectedItem.ToString();
+		var sshClient = new SSH().Client(key);
+		sshClient.Connect();
+		if (sshClient.IsConnected) {
+			var cmd = sshClient.CreateCommand("ls");
+			//"ffmpeg -i ./ORE/livetune\\ feat.\\ 初音ミク「glare」\\[禍つヴァールハイト\\]-lPCiuR2_IR4.mkv test.mp4 -vcodec libx256");
+			cmd.Execute();
+			MessageBox.Show(cmd.Result);
+		}
+		sshClient.Disconnect();
+	}
 }
