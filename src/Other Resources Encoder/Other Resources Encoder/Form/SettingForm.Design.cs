@@ -31,13 +31,6 @@ partial class SettingForm : Form {
 		this.profileSave          = new Button();
 		this.profileRemove        = new Button();
 		this.rmError              = new Label();
-		//SSH key
-		this.sshKeyLabel          = new Label();
-		this.privateKeyCopy       = new Button();
-		this.privateKeyOpen       = new Button();
-		this.publicKeyCopy        = new Button();
-		this.publicKeyOpen        = new Button();
-		this.keygen               = new Button();
 		//Priority
 		this.usagePriorityLabel   = new Label();
 
@@ -57,7 +50,6 @@ partial class SettingForm : Form {
 		this.settingList.Items.AddRange(new object[] {
 			"Resource Machines",
 			"Usage Priority",
-			"SSH Key",
 		});
 		this.settingList.Font = new Font(fontFamilyName, 15f);
 		this.settingList.Size = new Size(250, this.ClientSize.Height - margen * 2);
@@ -204,50 +196,6 @@ partial class SettingForm : Form {
 		);
 		this.rmError.Location = new Point(curW, curH);
 
-		//SSH Key
-		curH = margen;
-
-		this.sshKeyLabel.Text = "SSH Key";
-		this.sshKeyLabel.Size = new Size(100, 30);
-		this.sshKeyLabel.Font = new Font(fontFamilyName, 15f);
-		this.sshKeyLabel.Location = new Point(curW, curH);
-
-		curH += this.sshKeyLabel.Size.Height + margen;
-
-		this.privateKeyCopy.Text = "Private key Copy";
-		this.privateKeyCopy.Font = new Font(fontFamilyName, 14f);
-		this.privateKeyCopy.Size = new Size(215, 30);
-		this.privateKeyCopy.Location = new Point(curW, curH);
-		this.privateKeyCopy.Click += new EventHandler(privateKeyCopyClick);
-
-		this.privateKeyOpen.Text = "...";
-		this.privateKeyOpen.Font = new Font(fontFamilyName, 14f);
-		this.privateKeyOpen.Size = new Size(50, 30);
-		this.privateKeyOpen.Location = new Point(curW + this.privateKeyCopy.Size.Width, curH);
-		this.privateKeyOpen.Click += new EventHandler(privateKeyOpenClick);
-
-		curH += this.privateKeyOpen.Size.Height + margen;
-
-		this.publicKeyCopy.Text = "Public Key Copy";
-		this.publicKeyCopy.Font = new Font(fontFamilyName, 14f);
-		this.publicKeyCopy.Size = new Size(215, 30);
-		this.publicKeyCopy.Location = new Point(curW, curH);
-		this.publicKeyCopy.Click += new EventHandler(publicKeyCopyClick);
-
-		this.publicKeyOpen.Text = "...";
-		this.publicKeyOpen.Font = new Font(fontFamilyName, 14f);
-		this.publicKeyOpen.Size = new Size(50, 30);
-		this.publicKeyOpen.Location = new Point(curW + this.privateKeyCopy.Size.Width, curH);
-		this.publicKeyOpen.Click += new EventHandler(publicKeyOpenClick);
-
-		curH += this.publicKeyOpen.Size.Height + margen;
-
-		this.keygen.Text = "Generate";
-		this.keygen.Font = new Font(fontFamilyName, 14f);
-		this.keygen.Size = new Size(265, 30);
-		this.keygen.Location = new Point(curW, curH);
-		this.keygen.Click += new EventHandler(keygenClick);
-
 		//Setting List
 		this.Controls.Add(this.settingList);
 		this.Controls.Add(this.okButton);
@@ -271,14 +219,6 @@ partial class SettingForm : Form {
 		this.Controls.Add(this.profileSave);
 		this.Controls.Add(this.profileRemove);
 		this.Controls.Add(this.rmError);
-		
-		//SSH key
-		this.Controls.Add(this.sshKeyLabel);
-		this.Controls.Add(this.privateKeyCopy);
-		this.Controls.Add(this.privateKeyOpen);
-		this.Controls.Add(this.publicKeyCopy);
-		this.Controls.Add(this.publicKeyOpen);
-		this.Controls.Add(this.keygen);
 		
 		//Priority
 		this.Controls.Add(this.usagePriorityLabel);
