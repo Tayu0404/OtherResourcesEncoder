@@ -92,4 +92,26 @@ class Encode {
 		downloadSCP.WaitForExit();
 		Console.WriteLine(downloadSCP.ExitCode.ToString());
 	}
+
+	public string MakeCommand(string inputFile, string outputFile, params string[] args) {
+		string commnad = "docker run --rm -d -v `pwd`/ORE/input:/input -v `pwd`/ORE/output:/output jrottenberg/ffmpeg:3.3-alpine -i ./input/";
+		switch (args) {
+			case null:
+				commnad += inputFile;
+				commnad += " ";
+				commnad += outputFile;
+				commnad += "\n";
+				return commnad;
+			default:
+				commnad += inputFile;
+				foreach (string arg in args) {
+					commnad += " ";
+					commnad += arg;
+				}
+				commnad += " ";
+				commnad += outputFile;
+				commnad += "\n";
+				return commnad;
+		}
+	}
 }

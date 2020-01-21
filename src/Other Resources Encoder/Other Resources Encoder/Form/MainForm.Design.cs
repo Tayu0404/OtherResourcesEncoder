@@ -44,12 +44,13 @@ partial	class MainForm : Form {
 
 		//Client
 		this.Text = "Other Resource Encoder";
-		int mainFormW = (int)Math.Round(Screen.GetWorkingArea(this).Width * 0.9);
+		//int mainFormW = (int)Math.Round(Screen.GetWorkingArea(this).Width * 0.9);
+		int mainFormW = 200;
 		int mainFormH = (int)Math.Round(Screen.GetWorkingArea(this).Height * 0.9);
 		this.ClientSize = new Size(mainFormW, mainFormH);
 		this.MinimumSize = new Size(encodeSettingArea + margen * 3, 0);
 		this.MainMenuStrip = menuStrip;
-		this.WindowState = FormWindowState.Maximized;
+		//this.WindowState = FormWindowState.Maximized;
 
 		//Menu Bar
 		this.menuFile.Text = "File(F)";
@@ -85,6 +86,7 @@ partial	class MainForm : Form {
 		this.encodeLabel.Size = new Size(300, 25);
 		this.encodeLabel.Location = new Point(curW, curH);
 
+		/*
 		this.videoView.MediaPlayer = mediaPlayer;
 		this.videoView.BackColor = Color.Black;
 		int videoViewWidth  = this.ClientSize.Width - (encodeSettingArea + margen * 3);
@@ -100,6 +102,7 @@ partial	class MainForm : Form {
 			AnchorStyles.Left |
 			AnchorStyles.Right
 		);
+		*/
 
 		curH += this.encodeLabel.Size.Height + margen;
 
@@ -212,7 +215,7 @@ partial	class MainForm : Form {
 
 		this.Controls.Add(this.menuStrip);
 		this.Controls.Add(this.encodeLabel);
-		this.Controls.Add(this.videoView);
+		//this.Controls.Add(this.videoView);
 		this.Controls.Add(this.outPutFileNameLabel);
 		this.Controls.Add(this.outPutFileName);
 		this.Controls.Add(this.resourceMachine);

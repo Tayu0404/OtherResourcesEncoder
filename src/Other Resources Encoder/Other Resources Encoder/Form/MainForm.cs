@@ -28,6 +28,7 @@ partial class MainForm : Form {
 	}
 
 	private void mainFormLoad(object sender, EventArgs e) {
+	/*	
 		this.mediaPlayer.Play(
 			new Media(
 				this.livVLC, 
@@ -35,6 +36,7 @@ partial class MainForm : Form {
 				FromType.FromLocation
 			)
 		);
+		*/
 		this.loadSSHConfig();
 	}
 
@@ -72,5 +74,6 @@ partial class MainForm : Form {
 	
 	private void encodeClick(object sender, EventArgs e) {
 		var key = this.resourceMachine.SelectedItem.ToString();
+		//var commnad = Encode.MakeCommand(inputFile, outputFile, options);
 	}
 }
