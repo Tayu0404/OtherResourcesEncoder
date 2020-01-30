@@ -1,28 +1,32 @@
 ﻿using System;
 using System.Windows.Forms;
-using LibVLCSharp.Shared;
-using LibVLCSharp.WinForms;
+//using LibVLCSharp.Shared;
+//using LibVLCSharp.WinForms;
 partial class MainForm : Form {
 	//Menu bar 
 	private MenuStrip menuStrip;
 	private ToolStripMenuItem menuFile, menuFileNew, menuFileEixt, menuHelp, menuHelpAbout;
 
 	//Encode Setting
-	private Label encodeLabel, outPutFileNameLabel, encoderLabel, outPutVideoLabel, outPutAudioLabel;
-	private TextBox outPutFileName;
+	private Label encodeLabel, inputFileNameLabel, outPutFileNameLabel, encoderLabel, outPutVideoLabel, outPutAudioLabel;
+	private TextBox inputFileName, outPutFileName;
 	private ComboBox resourceMachine, encodeProfile, encoder;
-	private Button resourceMachineSetting, encodeProfileManegerButton, encode;
+	private Button inputFileSelect, resourceMachineSetting, encodeProfileManegerButton, encode;
 	private CheckBox outPutVideoCheckBox, outPutAudioCheckBox;
 
+	/*
 	//Video Preview
 	private LibVLC livVLC;
 	private MediaPlayer mediaPlayer;
 	private VideoView videoView;
-	
+	*/
+
 	public MainForm() {
+		/*
 		if (!DesignMode) {
 			Core.Initialize();
 		}
+		*/
 		InitializeComponent();
 		Load += mainFormLoad;
 	}
@@ -57,7 +61,18 @@ partial class MainForm : Form {
 		AboutForm aboutForm = new AboutForm();
 		aboutForm.ShowDialog();
 	}
-	
+
+	private void inputFileOpenClick(object sender, EventArgs e) {
+		OpenFileDialog openFile = new OpenFileDialog() {
+			Multiselect = false,
+		};
+
+		DialogResult result = openFile.ShowDialog();
+		if (result == DialogResult.OK) {
+			this.inputFileName.Text = openFile.FileName;
+		}
+	}
+
 	private void resourceMachineSettingClick(object sender, EventArgs e) {
 		SettingForm settingForm = new SettingForm();
 		settingForm.SelectSetting = "Resource Machines";
@@ -74,6 +89,20 @@ partial class MainForm : Form {
 	
 	private void encodeClick(object sender, EventArgs e) {
 		var key = this.resourceMachine.SelectedItem.ToString();
-		//var commnad = Encode.MakeCommand(inputFile, outputFile, options);
+		var inputFile = this.inputFileName.Text;
+		if (inputFile == "") {
+			return;
+		}
+
+		var swapFileName = inputFile.Split('\\');
+		var fileName = swapFileName[swapFileName.Length -1]; 
+		var encode = new Encode();
+		encode.UploadSCP(key, inputFile);
+
+		var commnad = encode.MakeCommand(fileName, this.outPutFileName.Text);
+		Console.WriteLine(commnad);
+		encode.Ffmpeg(key, commnad);
+
+		encode.DownlaodSCP(key, @"C:\Users\yusei\Documents\ORE\", this.outPutFileName.Text);
 	}
 }

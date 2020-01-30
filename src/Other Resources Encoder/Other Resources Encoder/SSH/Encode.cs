@@ -11,8 +11,9 @@ class Encode {
 		sshArguments += " -i " + configs[key].Identityfile;
 
 		var sshInfo = new ProcessStartInfo();
-		sshInfo.FileName = @"C:\Users\yusei\Documents\ORE\ssh.exe";
+		sshInfo.FileName = @"C:\Windows\Sysnative\OpenSSH\ssh.exe";
 		sshInfo.Arguments = sshArguments;
+		sshInfo.CreateNoWindow = true;
 		sshInfo.UseShellExecute = false;
 		sshInfo.RedirectStandardOutput = true;
 		sshInfo.RedirectStandardInput = true;
@@ -59,11 +60,12 @@ class Encode {
 		scpArguments += " " + filePath;
 		scpArguments += " " + configs[key].User;
 		scpArguments += "@" + configs[key].Host;
-		scpArguments += ":.";
+		scpArguments += ":./ORE/input/.";
 
 		var uploadSCPInfo = new ProcessStartInfo();
-		uploadSCPInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.System) + @"\OpenSSH\scp.exe";
+		uploadSCPInfo.FileName = @"C:\Windows\Sysnative\OpenSSH\scp.exe";
 		uploadSCPInfo.Arguments = scpArguments;
+		uploadSCPInfo.CreateNoWindow = true;
 		uploadSCPInfo.UseShellExecute = false;
 		uploadSCPInfo.RedirectStandardOutput = true;
 		uploadSCPInfo.RedirectStandardInput = true;
@@ -83,8 +85,9 @@ class Encode {
 		scpArguments += " " + folderPath;
 
 		var downloadSCPInfo = new ProcessStartInfo();
-		downloadSCPInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.System) + @"\OpenSSH\scp.exe";
+		downloadSCPInfo.FileName = @"C:\Windows\Sysnative\OpenSSH\scp.exe";
 		downloadSCPInfo.Arguments = scpArguments;
+		downloadSCPInfo.CreateNoWindow = true;
 		downloadSCPInfo.UseShellExecute = false;
 		downloadSCPInfo.RedirectStandardOutput = true;
 		downloadSCPInfo.RedirectStandardInput = true;
@@ -94,12 +97,12 @@ class Encode {
 	}
 
 	public string MakeCommand(string inputFile, string outputFile, params string[] args) {
-		string commnad = "docker run --rm -d -v `pwd`/ORE/input:/input -v `pwd`/ORE/output:/output jrottenberg/ffmpeg:3.3-alpine -i ./input/";
+		string commnad = "docker run --rm  -v `pwd`/ORE/input:/input -v `pwd`/ORE/output:/output jrottenberg/ffmpeg:3.3-alpine -i ./input/";
 		switch (args) {
 			case null:
 				commnad += inputFile;
 				commnad += " ";
-				commnad += outputFile;
+				commnad += "./output/" + outputFile;
 				commnad += "\n";
 				return commnad;
 			default:
@@ -109,7 +112,7 @@ class Encode {
 					commnad += arg;
 				}
 				commnad += " ";
-				commnad += outputFile;
+				commnad += "./output/" + outputFile;
 				commnad += "\n";
 				return commnad;
 		}

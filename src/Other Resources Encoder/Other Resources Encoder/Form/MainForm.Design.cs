@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using LibVLCSharp.Shared;
-using LibVLCSharp.WinForms;
+//using LibVLCSharp.Shared;
+//using LibVLCSharp.WinForms;
 
 partial	class MainForm : Form {
 	private void InitializeComponent() {
@@ -19,6 +19,9 @@ partial	class MainForm : Form {
 		this.menuHelpAbout           = new ToolStripMenuItem();
 		//Encode Setting
 		this.encodeLabel             = new Label();
+		this.inputFileNameLabel      = new Label();
+		this.inputFileName           = new TextBox();
+		this.inputFileSelect         = new Button();
 		this.outPutFileNameLabel     = new Label();
 		this.outPutFileName          = new TextBox();
 		this.resourceMachine         = new ComboBox();
@@ -33,10 +36,12 @@ partial	class MainForm : Form {
 		this.outPutAudioLabel        = new Label();
 		this.encode                  = new Button();
 
+		/*
 		//Video Preview
 		this.livVLC = new LibVLC();
 		this.mediaPlayer = new MediaPlayer(this.livVLC);
 		this.videoView = new VideoView();
+		*/
 
 		int encodeSettingArea = 300;
 
@@ -105,6 +110,26 @@ partial	class MainForm : Form {
 		*/
 
 		curH += this.encodeLabel.Size.Height + margen;
+
+		this.inputFileNameLabel.Text = "Input File";
+		this.inputFileNameLabel.Font = new Font(fontFamilyName, 14f);
+		this.inputFileNameLabel.TextAlign = ContentAlignment.MiddleLeft;
+		this.inputFileNameLabel.Size = new Size(100, 25);
+		this.inputFileNameLabel.Location = new Point(curW, curH);
+
+		this.inputFileName.Size = new Size(170, 25);
+		this.inputFileName.Font = new Font(fontFamilyName, 14f);
+		this.inputFileName.Location = new Point(curW + this.outPutFileNameLabel.Size.Width, curH);
+
+		this.inputFileSelect.Text = "...";
+		this.inputFileSelect.Size = new Size(30, 25);
+		this.inputFileSelect.Location = new Point(
+			this.inputFileName.Location.X + this.inputFileName.Size.Width,
+			curH
+		);
+		this.inputFileSelect.Click += new EventHandler(inputFileOpenClick);
+
+		curH += this.inputFileName.Size.Height + margen;
 
 		this.outPutFileNameLabel.Text = "Output File";
 		this.outPutFileNameLabel.Font = new Font(fontFamilyName, 14f);
@@ -216,6 +241,9 @@ partial	class MainForm : Form {
 		this.Controls.Add(this.menuStrip);
 		this.Controls.Add(this.encodeLabel);
 		//this.Controls.Add(this.videoView);
+		this.Controls.Add(this.inputFileNameLabel);
+		this.Controls.Add(this.inputFileName);
+		this.Controls.Add(this.inputFileSelect);
 		this.Controls.Add(this.outPutFileNameLabel);
 		this.Controls.Add(this.outPutFileName);
 		this.Controls.Add(this.resourceMachine);
