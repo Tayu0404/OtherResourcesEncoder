@@ -72,6 +72,14 @@ partial class MainForm : Form {
 			this.inputFileName.Text = openFile.FileName;
 		}
 	}
+	private void outputFolderOpenClick(object sender, EventArgs e) {
+		FolderBrowserDialog openFolder = new FolderBrowserDialog();
+
+		DialogResult result = openFolder.ShowDialog();
+		if (result == DialogResult.OK) {
+			this.outputDirPath.Text = openFolder.SelectedPath;
+		}
+	}
 
 	private void resourceMachineSettingClick(object sender, EventArgs e) {
 		SettingForm settingForm = new SettingForm();

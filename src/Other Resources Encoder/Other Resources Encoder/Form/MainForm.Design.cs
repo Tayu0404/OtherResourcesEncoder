@@ -162,6 +162,7 @@ partial	class MainForm : Form {
 			this.outputDirPath.Location.X + this.outputDirPath.Size.Width,
 			curH
 		);
+		this.outputDirSelect.Click += new EventHandler(outputFolderOpenClick);
 
 		curH += this.outputDirSelect.Size.Height + margen;
 
