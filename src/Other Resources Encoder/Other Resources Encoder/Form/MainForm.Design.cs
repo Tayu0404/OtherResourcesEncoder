@@ -24,6 +24,9 @@ partial	class MainForm : Form {
 		this.inputFileSelect         = new Button();
 		this.outPutFileNameLabel     = new Label();
 		this.outPutFileName          = new TextBox();
+		this.outputDirLabel          = new Label();
+		this.outputDirPath           = new TextBox();
+		this.outputDirSelect         = new Button();
 		this.resourceMachine         = new ComboBox();
 		this.resourceMachineSetting  = new Button();
 		this.encodeProfile           = new ComboBox();
@@ -143,6 +146,25 @@ partial	class MainForm : Form {
 
 		curH += this.outPutFileNameLabel.Size.Height + margen;
 
+		this.outputDirLabel.Text = "Foloder";
+		this.outputDirLabel.Font = new Font(fontFamilyName, 14f);
+		this.outputDirLabel.TextAlign = ContentAlignment.MiddleLeft;
+		this.outputDirLabel.Size = new Size(100, 25);
+		this.outputDirLabel.Location = new Point(curW, curH);
+
+		this.outputDirPath.Size = new Size(175, 25);
+		this.outputDirPath.Font = new Font(fontFamilyName, 14f);
+		this.outputDirPath.Location = new Point(curW + this.outputDirLabel.Size.Width, curH);
+
+		this.outputDirSelect.Text = "...";
+		this.outputDirSelect.Size = new Size(30, 25);
+		this.outputDirSelect.Location = new Point(
+			this.outputDirPath.Location.X + this.outputDirPath.Size.Width,
+			curH
+		);
+
+		curH += this.outputDirSelect.Size.Height + margen;
+
 		this.resourceMachine.Items.AddRange(new object[] {
 			"Resource Machine"
 		});
@@ -246,6 +268,9 @@ partial	class MainForm : Form {
 		this.Controls.Add(this.inputFileSelect);
 		this.Controls.Add(this.outPutFileNameLabel);
 		this.Controls.Add(this.outPutFileName);
+		this.Controls.Add(this.outputDirLabel);
+		this.Controls.Add(this.outputDirPath);
+		this.Controls.Add(this.outputDirSelect);
 		this.Controls.Add(this.resourceMachine);
 		this.Controls.Add(this.resourceMachineSetting);
 		this.Controls.Add(this.encodeProfile);

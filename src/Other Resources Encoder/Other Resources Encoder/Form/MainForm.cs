@@ -8,10 +8,10 @@ partial class MainForm : Form {
 	private ToolStripMenuItem menuFile, menuFileNew, menuFileEixt, menuHelp, menuHelpAbout;
 
 	//Encode Setting
-	private Label encodeLabel, inputFileNameLabel, outPutFileNameLabel, encoderLabel, outPutVideoLabel, outPutAudioLabel;
-	private TextBox inputFileName, outPutFileName;
+	private Label encodeLabel, inputFileNameLabel, outPutFileNameLabel, outputDirLabel, encoderLabel, outPutVideoLabel, outPutAudioLabel;
+	private TextBox inputFileName, outPutFileName, outputDirPath;
 	private ComboBox resourceMachine, encodeProfile, encoder;
-	private Button inputFileSelect, resourceMachineSetting, encodeProfileManegerButton, encode;
+	private Button inputFileSelect, outputDirSelect, resourceMachineSetting, encodeProfileManegerButton, encode;
 	private CheckBox outPutVideoCheckBox, outPutAudioCheckBox;
 
 	/*
