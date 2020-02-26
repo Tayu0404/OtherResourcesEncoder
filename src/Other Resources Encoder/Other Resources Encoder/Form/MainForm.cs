@@ -1,58 +1,62 @@
 ﻿using System;
 using System.Windows.Forms;
-//using LibVLCSharp.Shared;
-//using LibVLCSharp.WinForms;
-partial class MainForm : Form {
+
+public partial class MainForm : Form {
 	//Menu bar 
 	private MenuStrip menuStrip;
 	private ToolStripMenuItem menuFile, menuFileNew, menuFileEixt, menuHelp, menuHelpAbout;
 
-	//Encode Setting
-	private Label encodeLabel, inputFileNameLabel, outPutFileNameLabel, outputDirLabel, encoderLabel, outPutVideoLabel, outPutAudioLabel;
-	private TextBox inputFileName, outPutFileName, outputDirPath;
-	private ComboBox resourceMachine, encodeProfile, encoder;
-	private Button inputFileSelect, outputDirSelect, resourceMachineSetting, encodeProfileManegerButton, encode;
-	private CheckBox outPutVideoCheckBox, outPutAudioCheckBox;
+	//Main
+	//Files
+	private Label inputFileLabel, outputFileLabel, outputFolderLabel;
+	private TextBox inputFilePath, outputFileName, outputFolderPath;
+	private Button inputFileSelect, outputFolderSelect;
 
-	/*
-	//Video Preview
-	private LibVLC livVLC;
-	private MediaPlayer mediaPlayer;
-	private VideoView videoView;
-	*/
+	//Settings
+	private ComboBox resouceSelect, profileSelect;
+	private Button resouceSetting, profileSetting;
+
+	//EncodeExecute
+	private Button encodeExecute;
+
+	//VideoOptions
+	private Panel videoOptions;
+	private CheckBox encodeVideo;
+	private ComboBox videoEncoder;
+	private Label videoBitrateLabel, videoBitrateUnit;
+	private NumericUpDown videoBitrate;
+	private TrackBar videoBitrateBar;
+	private Button videoOtherOptions;
+
+	//AudioOptions
+	private Panel audioOptions;
+	private CheckBox encodeAudio, audioSamplingrateEnable;
+	private ComboBox audioEncoder;
+	private Label audioBitrateLabel, audioBitrateUnit, audioSamplingrateUnit;
+	private NumericUpDown audioBitrate, audioSamplingrate;
+	private TrackBar audioBitrateBar, audioSamplingrateBar;
+	private Button audioOtherOptions;
 
 	public MainForm() {
-		/*
-		if (!DesignMode) {
-			Core.Initialize();
-		}
-		*/
 		InitializeComponent();
 		Load += mainFormLoad;
 	}
 
 	private void mainFormLoad(object sender, EventArgs e) {
-	/*	
-		this.mediaPlayer.Play(
-			new Media(
-				this.livVLC, 
-				"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", 
-				FromType.FromLocation
-			)
-		);
-		*/
 		this.loadSSHConfig();
 	}
 
+	//SSH Config Load
 	private void loadSSHConfig() {
 		SSHConfig sshConfig = new SSHConfig();
 		var configs = sshConfig.Load();
 		foreach (string key in configs.Keys) {
-			this.resourceMachine.Items.Remove(key);
-			this.resourceMachine.Items.Add(key);
+			this.resouceSelect.Items.Remove(key);
+			this.resouceSelect.Items.Add(key);
 		}
 	}
 
+	//Menu Bar
 	private void menuFileExitClick(object sender, EventArgs e) {
 		this.Close();
 	}
@@ -62,26 +66,29 @@ partial class MainForm : Form {
 		aboutForm.ShowDialog();
 	}
 
-	private void inputFileOpenClick(object sender, EventArgs e) {
+	//File Select
+	private void inputFileCLick(object sender, EventArgs e) {
 		OpenFileDialog openFile = new OpenFileDialog() {
 			Multiselect = false,
 		};
 
-		DialogResult result = openFile.ShowDialog();
-		if (result == DialogResult.OK) {
-			this.inputFileName.Text = openFile.FileName;
+		if (openFile.ShowDialog() == DialogResult.OK) {
+			this.inputFilePath.Text = openFile.FileName;
 		}
 	}
-	private void outputFolderOpenClick(object sender, EventArgs e) {
-		FolderBrowserDialog openFolder = new FolderBrowserDialog();
+
+	//Folder Select
+	private void outputFolderClick(object sender, EventArgs e) {
+		FolderSelectDialog openFolder = new FolderSelectDialog();
 
 		DialogResult result = openFolder.ShowDialog();
 		if (result == DialogResult.OK) {
-			this.outputDirPath.Text = openFolder.SelectedPath;
+			this.outputFolderPath.Text = openFolder.Path;
 		}
 	}
 
-	private void resourceMachineSettingClick(object sender, EventArgs e) {
+	//Resouce Setting
+	private void resouceSettingClick(object sender, EventArgs e) {
 		SettingForm settingForm = new SettingForm();
 		settingForm.SelectSetting = "Resource Machines";
 		DialogResult result = settingForm.ShowDialog();
@@ -90,27 +97,49 @@ partial class MainForm : Form {
 		}
 	}
 
-	private void encodeProfileManegerButtonClick(object sender, EventArgs e) {
-		EncodeProfileForm encodeProfileForm = new EncodeProfileForm();
-		encodeProfileForm.ShowDialog();
-	}
-	
+	//Encode
 	private void encodeClick(object sender, EventArgs e) {
-		var key = this.resourceMachine.SelectedItem.ToString();
-		var inputFile = this.inputFileName.Text;
+		var key = this.resouceSelect.SelectedItem.ToString();
+		var inputFile = this.inputFilePath.Text;
 		if (inputFile == "") {
 			return;
 		}
 
 		var swapFileName = inputFile.Split('\\');
-		var fileName = swapFileName[swapFileName.Length -1]; 
+		var fileName = swapFileName[swapFileName.Length - 1];
 		var encode = new Encode();
 		encode.UploadSCP(key, inputFile);
 
-		var commnad = encode.MakeCommand(fileName, this.outPutFileName.Text);
+		var commnad = encode.MakeCommand(fileName, this.outputFileName.Text);
 		Console.WriteLine(commnad);
 		encode.Ffmpeg(key, commnad);
 
-		encode.DownlaodSCP(key, @"C:\Users\yusei\Documents\ORE\", this.outPutFileName.Text);
+		encode.DownlaodSCP(key, @"C:\Users\yusei\Documents\ORE\", this.outputFileName.Text);
+	}
+
+	//Video Bitrate
+	private void videoBitrateChange(object sender, EventArgs e) {
+		this.videoBitrateBar.Value = (int)Math.Round((double)this.videoBitrate.Value / 10);
+	}
+
+	private void videoBitrateBarScroll(object sender, EventArgs e) {
+		this.videoBitrate.Value = (decimal)((double)this.videoBitrateBar.Value * 10);
+	}
+
+	//Audio Bitrate
+	private void audioBitrateChange(object sender, EventArgs e) {
+		this.audioBitrateBar.Value = (int)Math.Round((double)this.audioBitrate.Value / 16);
+	}
+
+	private void audioBitrateBarScroll(object sender, EventArgs e) {
+		this.audioBitrate.Value = (int)this.audioBitrateBar.Value * 16;
+	}
+
+	private void audioSamplingrateChange(object sender, EventArgs e) {
+		this.audioSamplingrateBar.Value = (int)Math.Round((double)this.audioSamplingrate.Value / 1000);
+	}
+
+	private void audioSamplingrateBarScroll(object sender, EventArgs e) {
+		this.audioSamplingrate.Value = (int)this.audioSamplingrateBar.Value * 1000;
 	}
 }

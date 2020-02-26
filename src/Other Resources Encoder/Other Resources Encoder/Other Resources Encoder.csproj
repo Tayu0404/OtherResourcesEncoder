@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\SSHConfig.cs" />
+    <Compile Include="Form\FolderSelectDialog.cs" />
     <Compile Include="Path.cs" />
     <Compile Include="Form\AboutForm.cs">
       <SubType>Form</SubType>
